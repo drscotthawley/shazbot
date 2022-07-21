@@ -102,10 +102,3 @@ def main():
     r = process_map(wrapper, range(0, n), chunksize=1, max_workers=48)  # different chunksize used by tqdm. max_workers is to avoid annoying other ppl
 
     print("Finished")
-
-# Cell
-try: from nbdev.imports import IN_NOTEBOOK
-except: IN_NOTEBOOK=False
-
-if __name__ == "__main__" and not IN_NOTEBOOK:
-    print('Running "command line" logic ...')
