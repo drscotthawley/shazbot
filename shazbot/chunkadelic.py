@@ -17,7 +17,11 @@ from .core import is_silence
 
 # Cell
 
-def load_file(filename, sr=48000):
+def load_file(
+    filename:str,     # file to load
+    sr=48000,         # sample rate to read/resample at
+    )->torch.tensor:
+    "this loads an audio file as a torch tensor"
     audio, in_sr = torchaudio.load(filename)
     if in_sr != sr:
         print(f"Resampling {filename} from {in_sr} Hz to {sr} Hz")
@@ -26,7 +30,10 @@ def load_file(filename, sr=48000):
     return audio
 
 
-def makedir(path):
+def makedir(
+    path:str,  # directory or nested directory
+    ):
+    "creates directories where they don't exist"
     if os.path.isdir(path): return  # don't make it if it already exists
     #print(f"  Making directory {path}")
     try:
@@ -36,12 +43,12 @@ def makedir(path):
 
 
 def blow_chunks(
-    audio,          # long audio file to be chunked
-    new_filename,   # stem of new filename(s) to be output as chunks
-    chunk_size:int, # how big each audio chunk is, in samples
-    sr=48000,       # audio sample rate in Hz
-    overlap=0.5,    # fraction of each chunk to overlap between hops
-    strip=False,     # strip silence: chunks with max power in dB below this value will not be saved to files
+    audio:torch.tensor,  # long audio file to be chunked
+    new_filename:str, # stem of new filename(s) to be output as chunks
+    chunk_size:int,      # how big each audio chunk is, in samples
+    sr=48000,            # audio sample rate in Hz
+    overlap=0.5,         # fraction of each chunk to overlap between hops
+    strip=False,    # strip silence: chunks with max power in dB below this value will not be saved to files
     thresh=-70      # threshold in dB for determining what counts as silence
     ):
     "chunks up the audio and saves them with --{i} on the end of each chunk filename"
@@ -63,7 +70,11 @@ def blow_chunks(
     return
 
 
-def process_one_file(filenames, args, file_ind):
+def process_one_file(
+    filenames:list,      # list of filenames from which we'll pick one
+    args,                # output of argparse
+    file_ind             # index from filenames list to read from
+    ):
     "this chunks up one file"
     filename = filenames[file_ind]  # this is actually input_path+/+filename
     output_path, input_paths = args.output_path, args.input_paths

@@ -64,8 +64,32 @@ nb_path: "nbs/01_chunkadelic.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="load_file" class="doc_header"><code>load_file</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/chunkadelic.py#L20" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_file</code>(<strong><code>filename</code></strong>, <strong><code>sr</code></strong>=<em><code>48000</code></em>)</p>
+<h4 id="load_file" class="doc_header"><code>load_file</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/chunkadelic.py#L20" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_file</code>(<strong><code>filename</code></strong>:<code>str</code>, <strong><code>sr</code></strong>=<em><code>48000</code></em>)</p>
 </blockquote>
+<p>this loads an audio file as a torch tensor</p>
+<table>
+<thead><tr>
+<th></th>
+<th>Type</th>
+<th>Default</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>filename</code></strong></td>
+<td><code>str</code></td>
+<td></td>
+<td>file to load</td>
+</tr>
+<tr>
+<td><strong><code>sr</code></strong></td>
+<td><code>int</code></td>
+<td><code>48000</code></td>
+<td>sample rate to read/resample at</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 
@@ -88,8 +112,26 @@ nb_path: "nbs/01_chunkadelic.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="makedir" class="doc_header"><code>makedir</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/chunkadelic.py#L29" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>makedir</code>(<strong><code>path</code></strong>)</p>
+<h4 id="makedir" class="doc_header"><code>makedir</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/chunkadelic.py#L33" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>makedir</code>(<strong><code>path</code></strong>:<code>str</code>)</p>
 </blockquote>
+<p>creates directories where they don't exist</p>
+<table>
+<thead><tr>
+<th></th>
+<th>Type</th>
+<th>Default</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>path</code></strong></td>
+<td><code>str</code></td>
+<td></td>
+<td>directory or nested directory</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 
@@ -112,7 +154,7 @@ nb_path: "nbs/01_chunkadelic.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="blow_chunks" class="doc_header"><code>blow_chunks</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/chunkadelic.py#L38" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>blow_chunks</code>(<strong><code>audio</code></strong>, <strong><code>new_filename</code></strong>, <strong><code>chunk_size</code></strong>:<code>int</code>, <strong><code>sr</code></strong>=<em><code>48000</code></em>, <strong><code>overlap</code></strong>=<em><code>0.5</code></em>, <strong><code>strip</code></strong>=<em><code>False</code></em>, <strong><code>thresh</code></strong>=<em><code>-70</code></em>)</p>
+<h4 id="blow_chunks" class="doc_header"><code>blow_chunks</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/chunkadelic.py#L45" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>blow_chunks</code>(<strong><code>audio</code></strong>:<code>_VariableFunctionsClass.tensor</code>, <strong><code>new_filename</code></strong>:<code>str</code>, <strong><code>chunk_size</code></strong>:<code>int</code>, <strong><code>sr</code></strong>=<em><code>48000</code></em>, <strong><code>overlap</code></strong>=<em><code>0.5</code></em>, <strong><code>strip</code></strong>=<em><code>False</code></em>, <strong><code>thresh</code></strong>=<em><code>-70</code></em>)</p>
 </blockquote>
 <p>chunks up the audio and saves them with --{i} on the end of each chunk filename</p>
 <table>
@@ -126,13 +168,13 @@ nb_path: "nbs/01_chunkadelic.ipynb"
 <tbody>
 <tr>
 <td><strong><code>audio</code></strong></td>
-<td></td>
+<td><code>_VariableFunctionsClass.tensor</code></td>
 <td></td>
 <td>long audio file to be chunked</td>
 </tr>
 <tr>
 <td><strong><code>new_filename</code></strong></td>
-<td></td>
+<td><code>str</code></td>
 <td></td>
 <td>stem of new filename(s) to be output as chunks</td>
 </tr>
@@ -190,9 +232,38 @@ nb_path: "nbs/01_chunkadelic.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="process_one_file" class="doc_header"><code>process_one_file</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/chunkadelic.py#L66" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>process_one_file</code>(<strong><code>filenames</code></strong>, <strong><code>args</code></strong>, <strong><code>file_ind</code></strong>)</p>
+<h4 id="process_one_file" class="doc_header"><code>process_one_file</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/chunkadelic.py#L73" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>process_one_file</code>(<strong><code>filenames</code></strong>:<code>list</code>, <strong><code>args</code></strong>, <strong><code>file_ind</code></strong>)</p>
 </blockquote>
 <p>this chunks up one file</p>
+<table>
+<thead><tr>
+<th></th>
+<th>Type</th>
+<th>Default</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>filenames</code></strong></td>
+<td><code>list</code></td>
+<td></td>
+<td>list of filenames from which we'll pick one</td>
+</tr>
+<tr>
+<td><strong><code>args</code></strong></td>
+<td></td>
+<td></td>
+<td>output of argparse</td>
+</tr>
+<tr>
+<td><strong><code>file_ind</code></strong></td>
+<td></td>
+<td></td>
+<td>index from filenames list to read from</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 
@@ -215,7 +286,7 @@ nb_path: "nbs/01_chunkadelic.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="main" class="doc_header"><code>main</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/chunkadelic.py#L92" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>main</code>()</p>
+<h4 id="main" class="doc_header"><code>main</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/chunkadelic.py#L103" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>main</code>()</p>
 </blockquote>
 
 </div>
