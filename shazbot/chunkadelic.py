@@ -31,7 +31,7 @@ def load_file(
 
 
 def makedir(
-    path:str,  # directory or nested directory
+    path:str,          # directory or nested directory
     ):
     "creates directories where they don't exist"
     if os.path.isdir(path): return  # don't make it if it already exists
@@ -44,7 +44,7 @@ def makedir(
 
 def blow_chunks(
     audio:torch.tensor,  # long audio file to be chunked
-    new_filename:str, # stem of new filename(s) to be output as chunks
+    new_filename:str,    # stem of new filename(s) to be output as chunks
     chunk_size:int,      # how big each audio chunk is, in samples
     sr=48000,            # audio sample rate in Hz
     overlap=0.5,         # fraction of each chunk to overlap between hops
@@ -81,6 +81,7 @@ def process_one_file(
     new_filename = None
 
     for ipath in input_paths: # set up the output filename & any folders it needs
+        if args.nomix and ('Mix' in ipath) and ('Audio Files' in path): return  # this is specific to the BDCT dataset, otherwise ignore
         if ipath in filename:
             last_ipath = ipath.split('/')[-1]           # get the last part of ipath
             clean_filename = filename.replace(ipath,'') # remove all of ipath from the front of filename
@@ -107,6 +108,7 @@ def main():
     parser.add_argument('--overlap', type=float, default=0.5, help='Overlap factor')
     parser.add_argument('--strip', action='store_true', help='Strips silence: chunks with max dB below <thresh> are not outputted')
     parser.add_argument('--thresh', type=int, default=-70, help='threshold in dB for determining what constitutes silence')
+    parser.add_argument('--nomix', action='store_true',  help='(BDCT Dataset specific) exclude output of "*/Audio Files/*Mix*"')
     parser.add_argument('output_path', help='Path of output for chunkified data')
     parser.add_argument('input_paths', nargs='+', help='Path(s) of a file or a folder of files. (recursive)')
     args = parser.parse_args()
