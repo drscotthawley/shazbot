@@ -9,7 +9,10 @@ Work in progress. Do not try this.
 ```
 pip install git+https://github.com/drscotthawley/shazbot.git
 ```
-(`pip install shazbot` won't work yet)
+And then separately,
+```
+pip install git+https://github.com/drscotthawley/jukebox.git
+```
 
 ## How to use
 
