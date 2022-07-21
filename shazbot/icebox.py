@@ -8,14 +8,13 @@ from jukebox.make_models import make_vqvae, make_prior, MODELS, make_model
 from jukebox.hparams import Hyperparams, setup_hparams
 
 # Cell
-# TagBox Utils:
-#  Utilities from Ethan Manilows's TagBox: https://github.com/ethman/tagbox
-# slightly modified by Scott H. Hawley @drscotthawley
 
 #JUKEBOX_SAMPLE_RATE = 44100  # ethan's original
 JUKEBOX_SAMPLE_RATE = None
 
-def init_jukebox_sample_rate(sr=44100): # will probably use 48000 in practice
+def init_jukebox_sample_rate(
+    sr=44100  # sample rate in Hz. OpenAI's pretrained Jukebox weights are for 44100
+    ):
     "SHH added this util to preserve rest of code minimall-modified"
     global JUKEBOX_SAMPLE_RATE
     JUKEBOX_SAMPLE_RATE = sr
