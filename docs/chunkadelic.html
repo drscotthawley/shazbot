@@ -105,9 +105,56 @@ nb_path: "nbs/chunkadelic.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="blow_chunks" class="doc_header"><code>blow_chunks</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/chunkadelic.py#L37" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>blow_chunks</code>(<strong><code>audio</code></strong>, <strong><code>new_filename</code></strong>, <strong><code>chunk_size</code></strong>, <strong><code>sr</code></strong>=<em><code>48000</code></em>, <strong><code>overlap</code></strong>=<em><code>0.5</code></em>)</p>
+<h4 id="blow_chunks" class="doc_header"><code>blow_chunks</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/chunkadelic.py#L37" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>blow_chunks</code>(<strong><code>audio</code></strong>, <strong><code>new_filename</code></strong>, <strong><code>chunk_size</code></strong>:<code>int</code>, <strong><code>sr</code></strong>=<em><code>48000</code></em>, <strong><code>overlap</code></strong>=<em><code>0.5</code></em>, <strong><code>strip</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>chunks up the audio and saves them with --{i} on the end of each chunk filename</p>
+<table>
+<thead><tr>
+<th></th>
+<th>Type</th>
+<th>Default</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>audio</code></strong></td>
+<td></td>
+<td></td>
+<td>long audio file to be chunked</td>
+</tr>
+<tr>
+<td><strong><code>new_filename</code></strong></td>
+<td></td>
+<td></td>
+<td>stem of new filename(s) to be output as chunks</td>
+</tr>
+<tr>
+<td><strong><code>chunk_size</code></strong></td>
+<td><code>int</code></td>
+<td></td>
+<td>how big each audio chunk is, in samples</td>
+</tr>
+<tr>
+<td><strong><code>sr</code></strong></td>
+<td><code>int</code></td>
+<td><code>48000</code></td>
+<td>audio sample rate in Hz</td>
+</tr>
+<tr>
+<td><strong><code>overlap</code></strong></td>
+<td><code>float</code></td>
+<td><code>0.5</code></td>
+<td>fraction of each chunk to overlap between hops</td>
+</tr>
+<tr>
+<td><strong><code>strip</code></strong></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>strip silence: silent chunks will not be saved to files</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 
@@ -130,7 +177,7 @@ nb_path: "nbs/chunkadelic.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="process_one_file" class="doc_header"><code>process_one_file</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/chunkadelic.py#L55" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>process_one_file</code>(<strong><code>filenames</code></strong>, <strong><code>args</code></strong>, <strong><code>file_ind</code></strong>)</p>
+<h4 id="process_one_file" class="doc_header"><code>process_one_file</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/chunkadelic.py#L62" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>process_one_file</code>(<strong><code>filenames</code></strong>, <strong><code>args</code></strong>, <strong><code>file_ind</code></strong>)</p>
 </blockquote>
 <p>this chunks up one file</p>
 
@@ -162,7 +209,7 @@ nb_path: "nbs/chunkadelic.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="main" class="doc_header"><code>main</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/chunkadelic.py#L80" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>main</code>()</p>
+<h4 id="main" class="doc_header"><code>main</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/chunkadelic.py#L87" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>main</code>()</p>
 </blockquote>
 
 </div>
@@ -199,6 +246,7 @@ options:
                         Length of chunks (default: 131072)
   --sr SR               Output sample rate (default: 48000)
   --overlap OVERLAP     Overlap factor (default: 0.5)
+  --strip               Strip silences (default: False)
 An exception has occurred, use %tb to see the full traceback.</code></pre>
 
 </div>

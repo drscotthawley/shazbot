@@ -34,7 +34,14 @@ def makedir(path):
         pass
 
 
-def blow_chunks(audio, new_filename, chunk_size, sr=48000, overlap=0.5):
+def blow_chunks(
+    audio,          # long audio file to be chunked
+    new_filename,   # stem of new filename(s) to be output as chunks
+    chunk_size:int, # how big each audio chunk is, in samples
+    sr=48000,       # audio sample rate in Hz
+    overlap=0.5,    # fraction of each chunk to overlap between hops
+    strip=False     # strip silence: silent chunks will not be saved to files
+    ):
     "chunks up the audio and saves them with --{i} on the end of each chunk filename"
     chunk = torch.zeros(audio.shape[0], chunk_size)
     _, ext = os.path.splitext(new_filename)
@@ -55,7 +62,7 @@ def blow_chunks(audio, new_filename, chunk_size, sr=48000, overlap=0.5):
 def process_one_file(filenames, args, file_ind):
     "this chunks up one file"
     filename = filenames[file_ind]  # this is actually input_path+/+filename
-    chunk_size, sr, overlap, output_path, input_paths = args.chunk_size, args.sr, args.overlap, args.output_path, args.input_paths
+    output_path, input_paths = args.output_path, args.input_paths
     new_filename = None
 
     for ipath in input_paths: # set up the output filename & any folders it needs
@@ -71,7 +78,7 @@ def process_one_file(filenames, args, file_ind):
         return
     try:
         audio = load_file(filename, sr=sr)
-        blow_chunks(audio, new_filename, chunk_size, sr=sr, overlap=overlap)
+        blow_chunks(audio, new_filename, args.chunk_size, sr=args.sr, overlap=args.overlap, strip=args.strip)
     except:
         pass
     return
@@ -82,7 +89,10 @@ def main():
     parser.add_argument('--chunk_size', type=int, default=2**17, help='Length of chunks')
     parser.add_argument('--sr', type=int, default=48000, help='Output sample rate')
     parser.add_argument('--overlap', type=float, default=0.5, help='Overlap factor')
+    parser.add_argument('--overlap', type=float, default=0.5, help='Overlap factor')
     parser.add_argument('output_path', help='Path of output for chunkified data')
+    parser.add_argument('--strip', action="store_true", help='Strips silence: "silent" chunks are not output')
+
     parser.add_argument('input_paths', nargs='+', help='Path(s) of a file or a folder of files. (recursive)')
     args = parser.parse_args()
 
