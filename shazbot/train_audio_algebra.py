@@ -77,7 +77,7 @@ class AudioAlgebra(nn.Module):
     def loss(self, zsum, zmix):
         with torch.cuda.amp.autocast():
             loss = distance(zsum, zmix)
-        log_dict = {'train/loss': loss.detach()}
+        log_dict = {'loss': loss.detach()}
         return loss, log_dict
 
 # Cell
