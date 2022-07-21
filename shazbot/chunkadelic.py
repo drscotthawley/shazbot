@@ -97,7 +97,6 @@ def main():
     parser.add_argument('--strip', action='store_true', help='Strips silence: chunks with max dB below <thresh> are not outputted')
     parser.add_argument('--thresh', type=int, default=-70, help='threshold in dB for determining what constitutes silence')
     parser.add_argument('output_path', help='Path of output for chunkified data')
-
     parser.add_argument('input_paths', nargs='+', help='Path(s) of a file or a folder of files. (recursive)')
     args = parser.parse_args()
 
