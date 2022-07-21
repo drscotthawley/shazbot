@@ -90,9 +90,9 @@ def get_stems_faders(batch, dl):
     nstems = 1 + int(torch.randint(5,(1,1))[0][0].numpy())
     faders = 2*torch.rand(nstems)-1  # fader gains can be from -1 to 1
     stems = [batch]
-    train_iter = iter(train_dl)
+    dl_iter = iter(dl)
     for i in range(nstems-1):
-        stems.append(next(train_iter))
+        stems.append(next(dl_iter))
     return stems, faders
 
 # Cell
