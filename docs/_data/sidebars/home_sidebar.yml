@@ -12,6 +12,9 @@ entries:
     - output: web,pdf
       title: core
       url: core.html
+    - output: web,pdf
+      title: chunkadelic
+      url: chunkadelic.html
     output: web
     title: shazbot
   output: web

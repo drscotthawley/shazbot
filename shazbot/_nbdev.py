@@ -2,9 +2,15 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"say_hello": "00_core.ipynb"}
+index = {"say_hello": "00_core.ipynb",
+         "load_file": "chunkadelic.ipynb",
+         "makedir": "chunkadelic.ipynb",
+         "blow_chunks": "chunkadelic.ipynb",
+         "process_one_file": "chunkadelic.ipynb",
+         "main": "chunkadelic.ipynb"}
 
-modules = ["core.py"]
+modules = ["core.py",
+           "chunkadelic.py"]
 
 doc_url = "https://drscotthawley.github.io/shazbot/"
 

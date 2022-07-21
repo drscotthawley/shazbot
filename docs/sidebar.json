@@ -1,6 +1,7 @@
 {
   "shazbot": {
     "Overview": "/",
-    "core": "core.html"
+    "core": "core.html",
+    "chunkadelic": "chunkadelic.html"
   }
 }
