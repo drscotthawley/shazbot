@@ -1,12 +1,13 @@
 .ONESHELL:
 SHELL := /bin/bash
 SRC = $(wildcard ./*.ipynb)
+PACKAGE = shazbot
 
-all: shazbot docs
+all: main docs
 
-shazbot: $(SRC)
+main: $(SRC)
 	nbdev_build_lib
-	touch shazbot
+	touch $(PACKAGE)
 
 sync:
 	nbdev_update_lib
@@ -17,6 +18,13 @@ docs_serve: docs
 docs: $(SRC)
 	nbdev_build_docs
 	touch docs
+
+git_update: main docs
+	nbdev_build_lib
+	nbdev_build_docs
+	git add nbs settings.ini README.md $(PACKAGE) docs
+	git commit
+	git push
 
 test:
 	nbdev_test_nbs
