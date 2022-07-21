@@ -7,10 +7,32 @@ index = {"is_silence": "00_core.ipynb",
          "makedir": "01_chunkadelic.ipynb",
          "blow_chunks": "01_chunkadelic.ipynb",
          "process_one_file": "01_chunkadelic.ipynb",
-         "main": "01_chunkadelic.ipynb"}
+         "main": "03_train_audio_algebra.ipynb",
+         "init_jukebox_sample_rate": "03_train_audio_algebra.ipynb",
+         "audio_for_jbx": "03_train_audio_algebra.ipynb",
+         "load_audio_for_jbx": "03_train_audio_algebra.ipynb",
+         "JUKEBOX_SAMPLE_RATE": "03_train_audio_algebra.ipynb",
+         "IceBoxEncoder": "03_train_audio_algebra.ipynb",
+         "AudioAlgebra": "03_train_audio_algebra.ipynb",
+         "embeddings_table": "04_viz.ipynb",
+         "proj_pca": "04_viz.ipynb",
+         "pca_point_cloud": "04_viz.ipynb",
+         "spectrogram_image": "04_viz.ipynb",
+         "audio_spectrogram_image": "04_viz.ipynb",
+         "tokens_spectrogram_image": "04_viz.ipynb",
+         "append_dims": "05_blocks_utils.ipynb",
+         "n_params": "05_blocks_utils.ipynb",
+         "train_mode": "05_blocks_utils.ipynb",
+         "eval_mode": "05_blocks_utils.ipynb",
+         "ema_update": "05_blocks_utils.ipynb",
+         "EMAWarmup": "05_blocks_utils.ipynb",
+         "InverseLR": "05_blocks_utils.ipynb"}
 
 modules = ["core.py",
-           "chunkadelic.py"]
+           "chunkadelic.py",
+           "train_audio_algebra.py",
+           "viz.py",
+           "blocks_utils.py"]
 
 doc_url = "https://drscotthawley.github.io/shazbot/"
 

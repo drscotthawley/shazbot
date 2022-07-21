@@ -2,6 +2,10 @@
   "shazbot": {
     "Overview": "/",
     "core": "core.html",
-    "chunkadelic": "chunkadelic.html"
+    "chunkadelic": "chunkadelic.html",
+    "data": "data.html",
+    "train_audio_algebra": "train_audio_algebra.html",
+    "viz": "viz.html",
+    "blocks_utils": "blocks_utils.html"
   }
 }
