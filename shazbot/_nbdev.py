@@ -2,12 +2,13 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"say_hello": "00_core.ipynb",
-         "load_file": "chunkadelic.ipynb",
-         "makedir": "chunkadelic.ipynb",
-         "blow_chunks": "chunkadelic.ipynb",
-         "process_one_file": "chunkadelic.ipynb",
-         "main": "chunkadelic.ipynb"}
+index = {"is_silence": "00_core.ipynb",
+         "load_file": "01_chunkadelic.ipynb",
+         "makedir": "01_chunkadelic.ipynb",
+         "blow_chunks": "01_chunkadelic.ipynb",
+         "process_one_file": "01_chunkadelic.ipynb",
+         "main": "01_chunkadelic.ipynb",
+         "debug": "01_chunkadelic.ipynb"}
 
 modules = ["core.py",
            "chunkadelic.py"]
