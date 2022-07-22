@@ -12,7 +12,7 @@ jobs:
     - name: Install the library
       run: |
         sudo apt-get update
-        sudo apt-get install libopenmpi-dev libsndfile
+        sudo apt-get install libopenmpi-dev libsndfile-dev
         pip install nbdev jupyter wheel 
         pip install -e .
     - name: Read all notebooks
