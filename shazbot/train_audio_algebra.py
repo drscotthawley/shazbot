@@ -37,7 +37,7 @@ class AudioAlgebra(nn.Module):
         embed_block = nn.Sequential([
             nn.Linear(self.dims,self.dims),
             nn.LeakyReLU(),
-            nn.BatchNorm()
+            nn.BatchNorm1d(self.dims)
             ])
 
         self.reembedding = nn.Sequential([  # something simple at first
