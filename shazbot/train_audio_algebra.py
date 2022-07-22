@@ -31,7 +31,7 @@ class AudioAlgebra(nn.Module):
     def __init__(self, global_args, device):
         super().__init__()
         self.device = device
-        self.encoder = IceBoxEncoder(global_args)
+        self.encoder = IceBoxEncoder(global_args, device)
         self.dims = global_args.latent_dims
 
         embed_block = nn.Sequential([

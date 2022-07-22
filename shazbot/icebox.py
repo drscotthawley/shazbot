@@ -52,14 +52,14 @@ def load_audio_for_jbx(path, offset=0.0, dur=None, trunc_sec=None, device=None):
 
 # Cell
 class IceBoxEncoder(nn.Module):
-    def __init__(self, global_args, port=9500):
+    def __init__(self, global_args, device, port=9500):
         super().__init__()
 
         n_io_channels = 2
         n_feature_channels = 8
 
         # for making Jukebox work with multi-GPU runs
-        rank, local_rank, device = int(os.getenv('RANK')), int(os.getenv('LOCAL_RANK')), self.device
+        rank, local_rank, device = int(os.getenv('RANK')), int(os.getenv('LOCAL_RANK')), device
         dist_url = f"tcp://127.0.0.1:{port}"  # Note port may differ on different machines
         dist.init_process_group(backend="nccl")
 
@@ -70,7 +70,7 @@ class IceBoxEncoder(nn.Module):
         self.hps.hop_fraction = [.5,.5,.125]
 
         vqvae = "vqvae"
-        self.vqvae = make_vqvae(setup_hparams(vqvae, dict(sample_length = 1048576)), self.device)
+        self.vqvae = make_vqvae(setup_hparams(vqvae, dict(sample_length = 1048576)), device)
         for param in self.vqvae.parameters():  # FREEZE IT.  "IceBox"
             param.requires_grad = False
 
