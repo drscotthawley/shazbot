@@ -32,7 +32,7 @@ class AudioAlgebra(nn.Module):
         super().__init__()
         self.device = device
         self.encoder = IceBoxEncoder(global_args, device)
-        self.dims = global_args.latent_dims
+        self.dims = global_args.latent_dim
 
         embed_block = nn.Sequential([
             nn.Linear(self.dims,self.dims),
