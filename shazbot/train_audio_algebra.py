@@ -203,7 +203,6 @@ def main():
         pass
 
 # Cell
-#slow
 # Not needed if listed in console_scripts in settings.ini
-if __name__ == '__main__':
+if __name__ == '__main__' and "get_ipython" not in dir():  # don't execute in notebook
     main()
