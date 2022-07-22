@@ -48,14 +48,14 @@ class AudioAlgebra(nn.Module):
         self.encoder = IceBoxEncoder(global_args, device)
         self.dims = global_args.latent_dim
 
-        self.reembedding = nn.Sequential([  # something simple at first
+        self.reembedding = nn.Sequential(  # something simple at first
             EmbedBlock(self.dims),
             EmbedBlock(self.dims),
             EmbedBlock(self.dims),
             EmbedBlock(self.dims),
             EmbedBlock(self.dims),
             nn.Linear(self.dims,self.dims)
-            ])
+            )
 
     def forward(self,
         stems:list,   # list of torch tensors denoting solo audio parts to be mixed together
