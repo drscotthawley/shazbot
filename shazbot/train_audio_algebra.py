@@ -42,12 +42,6 @@ class AudioAlgebra(nn.Module):
         self.encoder = IceBoxEncoder(global_args, device)
         self.dims = global_args.latent_dim
 
-        embed_block = nn.Sequential([
-            nn.Linear(self.dims,self.dims),
-            nn.LeakyReLU(),
-            nn.BatchNorm1d(self.dims)
-            ])
-
         self.reembedding = nn.Sequential([  # something simple at first
             embed_block(self.dims),
             embed_block(self.dims),
