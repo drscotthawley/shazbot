@@ -201,3 +201,9 @@ def main():
         raise err
     except KeyboardInterrupt:
         pass
+
+# Cell
+#slow
+# Not needed if listed in console_scripts in settings.ini
+if __name__ == '__main__':
+    main()
