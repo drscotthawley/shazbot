@@ -6,6 +6,7 @@ __all__ = ['init_jukebox_sample_rate', 'audio_for_jbx', 'load_audio_for_jbx', 'J
 from torch import nn
 from jukebox.make_models import make_vqvae, make_prior, MODELS, make_model
 from jukebox.hparams import Hyperparams, setup_hparams
+import os
 
 # Cell
 
