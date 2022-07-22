@@ -61,8 +61,10 @@ class IceBoxEncoder(nn.Module):
 
         # for making Jukebox work with multi-GPU runs
         rank, local_rank, device = int(os.getenv('RANK')), int(os.getenv('LOCAL_RANK')), device
-        dist_url = f"tcp://127.0.0.1:{port}"  # Note port may differ on different machines
-        dist.init_process_group(backend="nccl")
+
+        # torch.distributed info set at top-level training script
+        #dist_url = f"tcp://127.0.0.1:{port}"  # Note port may differ on different machines
+        #dist.init_process_group(backend="nccl")
 
         self.hps = Hyperparams()
         assert global_args.sample_rate == 44100, "Jukebox was pretrained at 44100 Hz."
