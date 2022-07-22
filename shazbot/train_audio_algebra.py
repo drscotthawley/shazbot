@@ -41,11 +41,11 @@ class AudioAlgebra(nn.Module):
             ])
 
         self.reembedding = nn.Sequential([  # something simple at first
-            embed_block,
-            embed_block,
-            embed_block,
-            embed_block,
-            embed_block,
+            embed_block(),
+            embed_block(),
+            embed_block(),
+            embed_block(),
+            embed_block(),
             nn.Linear(self.dims,self.dims)
             ])
 
