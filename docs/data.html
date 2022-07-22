@@ -134,8 +134,7 @@ nb_path: "nbs/02_data.ipynb"
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signal</span><span class="p">):</span>
         <span class="n">gain</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">min_gain</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_gain</span><span class="p">)</span>
         <span class="n">signal</span> <span class="o">=</span> <span class="n">signal</span> <span class="o">*</span> <span class="n">gain</span>
-
-    <span class="k">return</span> <span class="n">signal</span>
+        <span class="k">return</span> <span class="n">signal</span>
 </pre></div>
 
     </div>
@@ -162,7 +161,7 @@ nb_path: "nbs/02_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="MultiStemDataset" class="doc_header"><code>class</code> <code>MultiStemDataset</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/data.py#L19" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>MultiStemDataset</code>(<strong><code>paths</code></strong>, <strong><code>global_args</code></strong>) :: <code>Dataset</code></p>
+<h2 id="MultiStemDataset" class="doc_header"><code>class</code> <code>MultiStemDataset</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/data.py#L20" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>MultiStemDataset</code>(<strong><code>paths</code></strong>, <strong><code>global_args</code></strong>) :: <code>Dataset</code></p>
 </blockquote>
 <p>An abstract class representing a :class:<code>Dataset</code>.</p>
 <p>All datasets that represent a map from keys to data samples should subclass

@@ -4,6 +4,7 @@ __all__ = ['MultiStemDataset']
 
 # Cell
 import torch
+import torch.nn as nn
 import torchaudio
 from os import makedirs
 from torchaudio import transforms as T
