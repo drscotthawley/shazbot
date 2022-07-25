@@ -25,7 +25,6 @@ from .viz import embeddings_table, pca_point_cloud, audio_spectrogram_image, tok
 import shazbot.blocks_utils as blocks_utils
 from .icebox import load_audio_for_jbx, IceBoxEncoder
 from .data import MultiStemDataset
-
 import subprocess
 
 # Cell
@@ -35,10 +34,13 @@ import pytorch_lightning as pl
 from diffusion.pqmf import CachedPQMF as PQMF
 from diffusion.utils import PadCrop, Stereo, NormInputs
 from encoders.encoders import RAVEEncoder, ResConvBlock
+from nwt_pytorch import Memcodes
+from dvae.residual_memcodes import ResidualMemcodes
+from decoders.diffusion_decoder import DiffusionDecoder
 
 # Cell
 #audio diffusion classes
-class DiffusionDVAE(pl.LightningModule):
+class DiffusionDVAE(nn.Module):
     def __init__(self, global_args, device):
         super().__init__()
         self.device = device
@@ -145,8 +147,8 @@ class DiffusionDVAE(pl.LightningModule):
             ema_update(self.quantizer, self.quantizer_ema, decay)'''
 
     def setup_weights(self):
-        pthfile = 'audio-diffusion.pth'
-        cmd = 'curl -C - -LO https://www.dropbox.com/s/8tcirpokhoxfo82/dvae-checkpoint-june9.pth; [ ! -f "{pthfile}" ] && cp dvae-checkpoint-june9.pth {pthfile}'
+        pthfile = 'dvae-checkpoint-june9.pth'
+        cmd = f'curl -C - -LO https://www.dropbox.com/s/8tcirpokhoxfo82/{pthfile}'
         process = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
         output, error = process.communicate()
         self.load_state_dict(torch.load(pthfile))
@@ -281,11 +283,12 @@ def main():
     encoder_choice = encoder_choices[0]
     print(f"Using {encoder_choice} as encoder")
     if 'icebox' == encoder_choice:
+        args.latent_dim = 64  # overwrite latent_dim with what Jukebox requires
         encoder = IceBoxEncoder(args, device)
     elif 'ad' == encoder_choice:
         dvae = DiffusionDVAE(args, device)
         dvae.setup_weights()
-        encoder = ADEncoder(args,device,dl_weights=True)
+        encoder = dvae.encoder
 
     print("Setting up AA model")
     aa_model = AudioAlgebra(args, device, encoder)
@@ -297,12 +300,12 @@ def main():
     if use_wandb:
         import wandb
         config = vars(args)
-        config['params'] = utils.n_params(aa_model)
+        config['params'] = blocks_utils.n_params(aa_model)
         wandb.init(project=args.name, config=config, save_code=True)
 
     opt = optim.Adam([*aa_model.reembedding.parameters()], lr=4e-5)
 
-    train_set = MultiStemDataSet([args.training_dir], args)
+    train_set = MultiStemDataset([args.training_dir], args)
     train_dl = torchdata.DataLoader(train_set, args.batch_size, shuffle=True,
                                num_workers=args.num_workers, persistent_workers=True, pin_memory=True)
 
