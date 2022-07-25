@@ -278,7 +278,7 @@ def main():
     print('Using device:', device, flush=True)
 
     encoder_choices = ['ad','icebox']
-    encoder_choice = encoder_choice[0]
+    encoder_choice = encoder_choices[0]
     print(f"Using {encoder_choice} as encoder")
     if 'icebox' == encoder_choice:
         encoder = IceBoxEncoder(args, device)
