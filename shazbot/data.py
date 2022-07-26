@@ -133,6 +133,9 @@ class MultiStemDataset(torch.utils.data.Dataset):
       self.load_frac = global_args.load_frac
     else:
       self.load_frac = 1.0
+    self.n_files = int(len(self.filenames)*self.load_frac)
+    self.filenames = self.filenames[0:self.n_files]
+
     self.num_gpus = global_args.num_gpus
 
     self.cache_training_data = global_args.cache_training_data
@@ -165,8 +168,7 @@ class MultiStemDataset(torch.utils.data.Dataset):
       return start, stop
 
   def preload_files(self):
-      n = int(len(self.filenames)*self.load_frac)
-      print(f"Caching {n} input audio files:")
+      print(f"Caching {self.n_files} input audio files:")
       wrapper = partial(self.load_file_ind, self.filenames)
       start, stop = self.get_data_range()
       with Pool(processes=cpu_count()) as p:   # //8 to avoid FS bottleneck and/or too many processes (b/c * num_gpus)
