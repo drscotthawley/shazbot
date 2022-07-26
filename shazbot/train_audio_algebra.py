@@ -265,8 +265,7 @@ class AudioAlgebra(nn.Module):
             if ('noshrink' == loss_type):     # try to preserve original magnitudes of of vectors
                 magdiffs2 = [ ( self.mag(z) - self.mag(z0) )**2 for (z,z0) in zip(archive['zs'], archive['z0s']) ]
                 loss += (sum(magdiffs2)/len(magdiffs2)).mean() # mean of l2 of diff in vector mag  extra .mean() for good measure
-
-        return loss, log_dict
+        return loss
 
 # Cell
 # utils
