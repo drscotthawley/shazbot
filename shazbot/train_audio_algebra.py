@@ -384,8 +384,8 @@ def main():
                             'epoch': epoch,
                             'loss': loss.item(),
                             #'lr': sched.get_last_lr()[0],
-                            'zsum': pca_point_cloud(zsum),
-                            'zmix': pca_point_cloud(zmix)
+                            'zsum': pca_point_cloud(zsum.detach()),
+                            'zmix': pca_point_cloud(zmix.detach())
                         }
                         wandb.log(log_dict, step=step)
 
