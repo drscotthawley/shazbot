@@ -25,7 +25,7 @@ import wandb
 import subprocess
 
 from .viz import embeddings_table, pca_point_cloud, audio_spectrogram_image, tokens_spectrogram_image
-from .core import n_params, save, freeze, Hostprinter
+from .core import n_params, save, freeze, HostPrinter
 #import shazbot.blocks_utils as blocks_utils
 from .icebox import load_audio_for_jbx, IceBoxEncoder
 from .data import MultiStemDataset
