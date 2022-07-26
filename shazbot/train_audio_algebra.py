@@ -219,7 +219,7 @@ class AudioAlgebra(nn.Module):
         "z0" denotes an embedding from the frozen encoder, "z" denotes re-mapped embeddings
         in (hopefully) the learned vector space"""
         with torch.cuda.amp.autocast():
-            zs, zsum = [], None
+            zs, z0s, zsum = [], z0s, None
             mix = torch.zeros_like(stems[0]).float()
             #print("mix.shape = ",mix.shape)
             for s, f in zip(stems, faders):
@@ -233,6 +233,7 @@ class AudioAlgebra(nn.Module):
                 zsum = z if zsum is None else zsum + z # compute the sum of all the z's. we'll end up using this in our (metric) loss as "pred"
                 mix += mix_s              # save a record of full audio mix
                 zs.append(z)              # save a list of individual z's
+                z0s.append(z0)            # save a list of individual z0's
 
             with torch.no_grad():
                 #zmix0 = self.encoder.encode(mix).float()  # compute frozen embedding / latent for the full mix
@@ -240,24 +241,36 @@ class AudioAlgebra(nn.Module):
             zmix0 = rearrange(zmix0, 'b d n -> b n d')
             zmix = self.reembedding(zmix0).float()        # map that according to our learned re-embedding. this will be the "target" in the metric loss
 
-        return zsum, zmix, zs, mix    # zsum = pred, zmix = target, and zs & zmix are just for extra info
+            archive = {'zs':zs, 'mix':mix, 'znegsum':None, 'z0s': z0s}
 
+        return zsum, zmix, archive    # zsum = pred, zmix = target, and "archive" of extra stuff zs & zmix are just for extra info
+
+    def mag(self, v):
+        return torch.norm( v, dim=(1,2) ) # L2 / Frobenius / Euclidean
 
     def distance(self, pred, targ):
-        return torch.norm( pred - targ, dim=(1,2) ) # L2 / Frobenius / Euclidean
+        return self.mag(pred - targ)
 
-    def loss(self, zsum, zmix):
+
+    def loss(self, zsum, zmix, archive, margin=1.0, loss_type='noshrink'):
         with torch.cuda.amp.autocast():
-            dist = self.distance(zsum, zmix)
+            dist = self.distance(zsum, zmix) # for each member of batch, compute distance
+            loss = (dist**2).mean()  # mean across batch; so loss range doesn't change w/ batch_size hyperparam
             #print("dist = ",dist)
             #dist = rearrange(dist, 'b d n -> b (d n)') # flatten non-batch parts
-            loss = dist.mean()   # mean across batch; so loss range doesn't change w/ batch_size hyperparam
-        log_dict = {'loss': loss.detach()}
+            if ('triplet'==loss_type) and (archive['znegsum'] is not None):
+                negdist = self.distance(archive['znegsum'], zmix)
+                negdist = negdist * (negdist < margin)   # beyond margin, do nothing
+                loss = F.relu( (dist**2).mean() - (negdist**2).mean() ) # relu gets us hinge of L2
+            if ('noshrink' == loss_type):     # try to preserve original magnitudes of of vectors
+                magdiffs2 = [ ( self.mag(z) - self.mag(z0) )**2 for (z,z0) in zip(archive['zs'], archive['z0s']) ]
+                loss += (sum(magdiffs2)/len(magdiffs2)).mean() # mean of l2 of diff in vector mag  extra .mean() for good measure
+
         return loss, log_dict
 
 # Cell
 # utils
-def demo():
+def demo(dl):
     return
     print("In demo placeholder")
 
@@ -358,8 +371,8 @@ def main():
                 # but instead I just added get_stems_faders() which grabs "even more" audio to go with "batch"
                 stems, faders = get_stems_faders(batch, train_dl)
 
-                zsum, zmix, zs, mix = accelerator.unwrap_model(aa_model).forward(stems,faders)
-                loss, log_dict = accelerator.unwrap_model(aa_model).loss(zsum, zmix)
+                zsum, zmix, zarchive = accelerator.unwrap_model(aa_model).forward(stems,faders)
+                loss = accelerator.unwrap_model(aa_model).loss(zsum, zmix, zarchive)
                 accelerator.backward(loss)
                 opt.step()
 
@@ -369,7 +382,6 @@ def main():
 
                     if use_wandb:
                         log_dict = {
-                            **log_dict,
                             'epoch': epoch,
                             'loss': loss.item(),
                             #'lr': sched.get_last_lr()[0],
@@ -377,7 +389,7 @@ def main():
                         wandb.log(log_dict, step=step)
 
                     if step % args.demo_every == 0:
-                        demo()
+                        demo(train_dl) # we're random cropping all the time anyway soo...
 
                 if step > 0 and step % args.checkpoint_every == 0:
                     save(accelerator, args, aa_model, opt, epoch, step)
