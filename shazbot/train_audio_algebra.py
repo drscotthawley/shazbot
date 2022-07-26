@@ -219,7 +219,7 @@ class AudioAlgebra(nn.Module):
         "z0" denotes an embedding from the frozen encoder, "z" denotes re-mapped embeddings
         in (hopefully) the learned vector space"""
         with torch.cuda.amp.autocast():
-            zs, z0s, zsum = [], z0s, None
+            zs, z0s, zsum = [], [], None
             mix = torch.zeros_like(stems[0]).float()
             #print("mix.shape = ",mix.shape)
             for s, f in zip(stems, faders):
