@@ -159,7 +159,7 @@ def setup_weights(model, accelerator):
         output, error = process.communicate()
     #self.load_state_dict(torch.load(pthfile))
     accelerator.unwrap_model(model).load_state_dict(torch.load(pthfile))
-    model = model.to(self.device)
+    model = model.to(accelerator.device)
     return model
 
 def ad_encode_it(reals, device, dvaemodel, sample_size=32768, num_quantizers=8):
@@ -337,7 +337,7 @@ def main():
     aa_model, opt, train_dl, dvae = accelerator.prepare(aa_model, opt, train_dl, dvae)
 
     hprint("Setting up frozen encoder model weights")
-    dvae = setup_weights(dvae, accelerator, device)
+    dvae = setup_weights(dvae, accelerator)
     freeze(accelerator.unwrap_model(dvae))
     #encoder = dvae.encoder
 
