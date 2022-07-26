@@ -57,13 +57,6 @@ nb_path: "nbs/03_train_audio_algebra.ipynb"
     
 <div class="cell border-box-sizing code_cell rendered">
 
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
 <div class="output_wrapper">
 <div class="output">
 
@@ -122,7 +115,31 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="ad_encode_it" class="doc_header"><code>ad_encode_it</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_audio_algebra.py#L157" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ad_encode_it</code>(<strong><code>reals</code></strong>, <strong><code>device</code></strong>, <strong><code>encoder_ema</code></strong>, <strong><code>quantizer_ema</code></strong>, <strong><code>sample_size</code></strong>=<em><code>32768</code></em>, <strong><code>num_quantizers</code></strong>=<em><code>8</code></em>)</p>
+<h4 id="setup_weights" class="doc_header"><code>setup_weights</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_audio_algebra.py#L151" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>setup_weights</code>(<strong><code>model</code></strong>, <strong><code>accelerator</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="ad_encode_it" class="doc_header"><code>ad_encode_it</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_audio_algebra.py#L162" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ad_encode_it</code>(<strong><code>reals</code></strong>, <strong><code>device</code></strong>, <strong><code>dvaemodel</code></strong>, <strong><code>sample_size</code></strong>=<em><code>32768</code></em>, <strong><code>num_quantizers</code></strong>=<em><code>8</code></em>)</p>
 </blockquote>
 
 </div>
@@ -159,7 +176,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="EmbedBlock" class="doc_header"><code>class</code> <code>EmbedBlock</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_audio_algebra.py#L172" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EmbedBlock</code>(<strong><code>dims</code></strong>:<code>int</code>, <strong>**<code>kwargs</code></strong>) :: <code>Module</code></p>
+<h2 id="EmbedBlock" class="doc_header"><code>class</code> <code>EmbedBlock</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_audio_algebra.py#L176" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EmbedBlock</code>(<strong><code>dims</code></strong>:<code>int</code>, <strong>**<code>kwargs</code></strong>) :: <code>Module</code></p>
 </blockquote>
 <p>Base class for all neural network modules.</p>
 <p>Your models should also subclass this class.</p>
@@ -210,7 +227,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="AudioAlgebra" class="doc_header"><code>class</code> <code>AudioAlgebra</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_audio_algebra.py#L185" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>AudioAlgebra</code>(<strong><code>global_args</code></strong>, <strong><code>device</code></strong>, <strong><code>encoder</code></strong>) :: <code>Module</code></p>
+<h2 id="AudioAlgebra" class="doc_header"><code>class</code> <code>AudioAlgebra</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_audio_algebra.py#L191" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>AudioAlgebra</code>(<strong><code>global_args</code></strong>, <strong><code>device</code></strong>, <strong><code>enc_model</code></strong>) :: <code>Module</code></p>
 </blockquote>
 <p>Base class for all neural network modules.</p>
 <p>Your models should also subclass this class.</p>
@@ -268,7 +285,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="demo" class="doc_header"><code>demo</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_audio_algebra.py#L238" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>demo</code>()</p>
+<h4 id="demo" class="doc_header"><code>demo</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_audio_algebra.py#L257" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>demo</code>()</p>
 </blockquote>
 
 </div>
@@ -285,13 +302,6 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
     
 <div class="cell border-box-sizing code_cell rendered">
 
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
 <div class="output_wrapper">
 <div class="output">
 
@@ -299,7 +309,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_stems_faders" class="doc_header"><code>get_stems_faders</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_audio_algebra.py#L242" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_stems_faders</code>(<strong><code>batch</code></strong>, <strong><code>dl</code></strong>)</p>
+<h4 id="get_stems_faders" class="doc_header"><code>get_stems_faders</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_audio_algebra.py#L262" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_stems_faders</code>(<strong><code>batch</code></strong>, <strong><code>dl</code></strong>, <strong><code>maxstems</code></strong>=<em><code>6</code></em>)</p>
 </blockquote>
 <p>grab some more audio stems and set faders</p>
 
@@ -317,13 +327,6 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
     
 <div class="cell border-box-sizing code_cell rendered">
 
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
 <div class="output_wrapper">
 <div class="output">
 
@@ -331,7 +334,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="save" class="doc_header"><code>save</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_audio_algebra.py#L253" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>save</code>(<strong><code>args</code></strong>, <strong><code>model</code></strong>, <strong><code>opt</code></strong>, <strong><code>epoch</code></strong>, <strong><code>step</code></strong>)</p>
+<h4 id="save" class="doc_header"><code>save</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_audio_algebra.py#L273" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>save</code>(<strong><code>accelerator</code></strong>, <strong><code>args</code></strong>, <strong><code>model</code></strong>, <strong><code>opt</code></strong>, <strong><code>epoch</code></strong>, <strong><code>step</code></strong>)</p>
 </blockquote>
 <p>checkpointing</p>
 
@@ -349,24 +352,78 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
     
 <div class="cell border-box-sizing code_cell rendered">
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="n_params" class="doc_header"><code>n_params</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_audio_algebra.py#L287" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>n_params</code>(<strong><code>module</code></strong>)</p>
+</blockquote>
+<p>Returns the number of trainable parameters in a module.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
     {% endraw %}
 
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">n_params</span><span class="p">(</span><span class="n">module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns the number of trainable parameters in a module.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">module</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
-</pre></div>
+<div class="output_wrapper">
+<div class="output">
 
-    </div>
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="freeze" class="doc_header"><code>freeze</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_audio_algebra.py#L292" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>freeze</code>(<strong><code>model</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="MyPrinter" class="doc_header"><code>class</code> <code>MyPrinter</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_audio_algebra.py#L297" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>MyPrinter</code>(<strong><code>accelerator</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -388,7 +445,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="main" class="doc_header"><code>main</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_audio_algebra.py#L268" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>main</code>()</p>
+<h4 id="main" class="doc_header"><code>main</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_audio_algebra.py#L305" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>main</code>()</p>
 </blockquote>
 
 </div>
