@@ -269,7 +269,7 @@ class AudioAlgebra(nn.Module):
 
 # Cell
 # utils
-def demo(dl):
+def demo(dl, model):
     return
     print("In demo placeholder")
 
@@ -390,7 +390,7 @@ def main():
                         wandb.log(log_dict, step=step)
 
                     if step % args.demo_every == 0:
-                        demo(train_dl, model) # we're random cropping all the time anyway soo...
+                        demo(train_dl, aa_model) # we're random cropping all the time anyway soo...
 
                 if step > 0 and step % args.checkpoint_every == 0:
                     save(accelerator, args, aa_model, opt, epoch, step)
