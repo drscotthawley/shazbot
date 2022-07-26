@@ -18,7 +18,7 @@ def is_silence(
 
 # Cell
 class HostPrinter():
-    "lil accelerate utility for only printint on host node"
+    "lil accelerate utility for only printing on host node"
     def __init__(self, accelerator):
         self.accelerator = accelerator
     def __call__(self, s:str):
@@ -27,9 +27,9 @@ class HostPrinter():
 
 # Cell
 def save(accelerator, args, model, opt=None, epoch=None, step=None):
-    "checkpointing"
+    "for checkpointing & model saves"
     accelerator.wait_for_everyone()
-    filename = f'{args.name}_{step:08}.pth'
+    filename = f'{args.name}_{step:08}.pth' if (step is not None) else f'{args.name}.pth'
     if accelerator.is_main_process:
         tqdm.write(f'Saving to {filename}...')
     obj = {'model': accelerator.unwrap_model(model).state_dict() }
