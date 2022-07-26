@@ -385,11 +385,13 @@ def main():
                             'epoch': epoch,
                             'loss': loss.item(),
                             #'lr': sched.get_last_lr()[0],
+                            'zsum': pca_point_cloud(zsum),
+                            'zmix': pca_point_cloud(zmix)
                         }
                         wandb.log(log_dict, step=step)
 
                     if step % args.demo_every == 0:
-                        demo(train_dl) # we're random cropping all the time anyway soo...
+                        demo(train_dl, model) # we're random cropping all the time anyway soo...
 
                 if step > 0 and step % args.checkpoint_every == 0:
                     save(accelerator, args, aa_model, opt, epoch, step)
