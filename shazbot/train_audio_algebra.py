@@ -25,7 +25,7 @@ import wandb
 import subprocess
 
 from .viz import embeddings_table, pca_point_cloud, audio_spectrogram_image, tokens_spectrogram_image
-from .core import n_params, save, freeze, HostPrinter
+from .core import n_params, save, freeze, HostPrinter, Mish
 #import shazbot.blocks_utils as blocks_utils
 from .icebox import load_audio_for_jbx, IceBoxEncoder
 from .data import MultiStemDataset
@@ -180,15 +180,16 @@ class EmbedBlock(nn.Module):
     def __init__(self, dims:int, **kwargs) -> None:
         super().__init__()
         self.lin = nn.Linear(dims, dims, **kwargs)
-        self.act = nn.LeakyReLU()
+        #self.act = nn.LeakyReLU()
+        self.act = Mish()
         self.bn = nn.BatchNorm1d(dims)
 
     def forward(self, x: Tensor) -> Tensor:
         x = self.lin(x)
-        x = rearrange(x, 'b d n -> b n d')
+        x = rearrange(x, 'b d n -> b n d') # gotta rearrange for bn
         x = self.bn(x)
-        x = rearrange(x, 'b n d -> b d n')
-        return F.leaky_relu(x, inplace=True)
+        x = rearrange(x, 'b n d -> b d n') # and undo rearrange for later layers
+        return self.act(x)
 
 
 class AudioAlgebra(nn.Module):
@@ -264,7 +265,7 @@ class AudioAlgebra(nn.Module):
                 loss = F.relu( (dist**2).mean() - (negdist**2).mean() ) # relu gets us hinge of L2
             if ('noshrink' == loss_type):     # try to preserve original magnitudes of of vectors
                 magdiffs2 = [ ( self.mag(z) - self.mag(z0) )**2 for (z,z0) in zip(archive['zs'], archive['z0s']) ]
-                loss += (sum(magdiffs2)/len(magdiffs2)).mean() # mean of l2 of diff in vector mag  extra .mean() for good measure
+                loss += 1/300*(sum(magdiffs2)/len(magdiffs2)).mean() # mean of l2 of diff in vector mag  extra .mean() for good measure
         return loss
 
 # Cell
