@@ -55,7 +55,7 @@ modules = ["blocks_utils.py",
            "core.py",
            "data.py",
            "icebox.py",
-           "train_audio_algebra.py",
+           "train_aa_mixer.py",
            "viz.py"]
 
 doc_url = "https://drscotthawley.github.io/shazbot/"
