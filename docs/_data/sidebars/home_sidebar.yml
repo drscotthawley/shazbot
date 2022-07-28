@@ -25,7 +25,7 @@ entries:
       title: icebox
       url: icebox.html
     - output: web,pdf
-      title: train_audio_algebra
+      title: train_aa_mixer
       url: train_aa_mixer.html
     - output: web,pdf
       title: viz
