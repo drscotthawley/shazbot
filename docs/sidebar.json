@@ -1,12 +1,12 @@
 {
   "shazbot": {
     "Overview": "/",
-    "core": "core.html",
-    "chunkadelic": "chunkadelic.html",
-    "data": "data.html",
-    "train_audio_algebra": "train_audio_algebra.html",
-    "viz": "viz.html",
     "blocks_utils": "blocks_utils.html",
-    "icebox": "icebox.html"
+    "chunkadelic": "chunkadelic.html",
+    "core": "core.html",
+    "data": "data.html",
+    "icebox": "icebox.html",
+    "train_audio_algebra": "train_aa_mixer.html",
+    "viz": "viz.html"
   }
 }

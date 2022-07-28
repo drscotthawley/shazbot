@@ -10,26 +10,26 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: core
-      url: core.html
+      title: blocks_utils
+      url: blocks_utils.html
     - output: web,pdf
       title: chunkadelic
       url: chunkadelic.html
     - output: web,pdf
+      title: core
+      url: core.html
+    - output: web,pdf
       title: data
       url: data.html
     - output: web,pdf
+      title: icebox
+      url: icebox.html
+    - output: web,pdf
       title: train_audio_algebra
-      url: train_audio_algebra.html
+      url: train_aa_mixer.html
     - output: web,pdf
       title: viz
       url: viz.html
-    - output: web,pdf
-      title: blocks_utils
-      url: blocks_utils.html
-    - output: web,pdf
-      title: icebox
-      url: icebox.html
     output: web
     title: shazbot
   output: web
