@@ -64,7 +64,7 @@ nb_path: "nbs/train_aa_mixer.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="DiffusionDVAE" class="doc_header"><code>class</code> <code>DiffusionDVAE</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L45" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DiffusionDVAE</code>(<strong><code>global_args</code></strong>, <strong><code>device</code></strong>) :: <code>Module</code></p>
+<h2 id="DiffusionDVAE" class="doc_header"><code>class</code> <code>DiffusionDVAE</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L48" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DiffusionDVAE</code>(<strong><code>global_args</code></strong>, <strong><code>device</code></strong>) :: <code>Module</code></p>
 </blockquote>
 <p>Base class for all neural network modules.</p>
 <p>Your models should also subclass this class.</p>
@@ -115,7 +115,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="setup_weights" class="doc_header"><code>setup_weights</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L153" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>setup_weights</code>(<strong><code>model</code></strong>, <strong><code>accelerator</code></strong>)</p>
+<h4 id="setup_weights" class="doc_header"><code>setup_weights</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L156" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>setup_weights</code>(<strong><code>model</code></strong>, <strong><code>accelerator</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -139,7 +139,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="ad_encode_it" class="doc_header"><code>ad_encode_it</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L164" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ad_encode_it</code>(<strong><code>reals</code></strong>, <strong><code>device</code></strong>, <strong><code>dvaemodel</code></strong>, <strong><code>sample_size</code></strong>=<em><code>32768</code></em>, <strong><code>num_quantizers</code></strong>=<em><code>8</code></em>)</p>
+<h4 id="ad_encode_it" class="doc_header"><code>ad_encode_it</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L167" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ad_encode_it</code>(<strong><code>reals</code></strong>, <strong><code>device</code></strong>, <strong><code>dvaemodel</code></strong>, <strong><code>sample_size</code></strong>=<em><code>32768</code></em>, <strong><code>num_quantizers</code></strong>=<em><code>8</code></em>)</p>
 </blockquote>
 
 </div>
@@ -176,7 +176,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="EmbedBlock" class="doc_header"><code>class</code> <code>EmbedBlock</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L178" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EmbedBlock</code>(<strong><code>dims</code></strong>:<code>int</code>, <strong>**<code>kwargs</code></strong>) :: <code>Module</code></p>
+<h2 id="EmbedBlock" class="doc_header"><code>class</code> <code>EmbedBlock</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L181" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EmbedBlock</code>(<strong><code>dims</code></strong>:<code>int</code>, <strong>**<code>kwargs</code></strong>) :: <code>Module</code></p>
 </blockquote>
 <p>Base class for all neural network modules.</p>
 <p>Your models should also subclass this class.</p>
@@ -227,7 +227,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="AudioAlgebra" class="doc_header"><code>class</code> <code>AudioAlgebra</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L194" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>AudioAlgebra</code>(<strong><code>global_args</code></strong>, <strong><code>device</code></strong>, <strong><code>enc_model</code></strong>) :: <code>Module</code></p>
+<h2 id="AudioAlgebra" class="doc_header"><code>class</code> <code>AudioAlgebra</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L197" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>AudioAlgebra</code>(<strong><code>global_args</code></strong>, <strong><code>device</code></strong>, <strong><code>enc_model</code></strong>) :: <code>Module</code></p>
 </blockquote>
 <p>Base class for all neural network modules.</p>
 <p>Your models should also subclass this class.</p>
@@ -283,241 +283,427 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_alphas_sigmas</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns the scaling factors for the clean image (alpha) and for the</span>
-<span class="sd">    noise (sigma), given a timestep.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
 
 
-<span class="k">def</span> <span class="nf">get_crash_schedule</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
-    <span class="n">sigma</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
-    <span class="n">alpha</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
-    <span class="k">return</span> <span class="n">alpha_sigma_to_t</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_alphas_sigmas" class="doc_header"><code>get_alphas_sigmas</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L276" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_alphas_sigmas</code>(<strong><code>t</code></strong>)</p>
+</blockquote>
+<p>Returns the scaling factors for the clean image (alpha) and for the
+noise (sigma), given a timestep.</p>
 
+</div>
 
-<span class="k">def</span> <span class="nf">alpha_sigma_to_t</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns a timestep, given the scaling factors for the clean image and for</span>
-<span class="sd">    the noise.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">2</span>
+</div>
 
-
-<span class="nd">@torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span> <span class="n">logits</span><span class="p">,</span> <span class="n">post_every</span><span class="o">=</span><span class="mi">25</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Draws samples from a model given starting noise.&quot;&quot;&quot;</span>
-    <span class="n">ts</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">new_ones</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
-
-    <span class="c1"># Create the noise schedule</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">steps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">alphas</span><span class="p">,</span> <span class="n">sigmas</span> <span class="o">=</span> <span class="n">get_alphas_sigmas</span><span class="p">(</span><span class="n">get_crash_schedule</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
-
-    <span class="c1"># The sampling loop</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">trange</span><span class="p">(</span><span class="n">steps</span><span class="p">):</span>
-
-        <span class="c1"># Get the model output (v, the predicted velocity)</span>
-        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">amp</span><span class="o">.</span><span class="n">autocast</span><span class="p">():</span>
-            <span class="n">v</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ts</span> <span class="o">*</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">logits</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
-
-        <span class="c1"># Predict the noise and the denoised image</span>
-        <span class="n">pred</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">alphas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">v</span> <span class="o">*</span> <span class="n">sigmas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">eps</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">sigmas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">v</span> <span class="o">*</span> <span class="n">alphas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-
-        <span class="k">if</span> <span class="mi">0</span> <span class="o">==</span> <span class="n">i</span> <span class="o">%</span> <span class="n">post_every</span><span class="p">:</span> <span class="c1"># share intermediate results along the way</span>
-            <span class="c1"># can&#39;t get the &quot;plot&quot; part of &quot;plot and hear&quot; to work right</span>
-            <span class="n">display</span><span class="p">(</span><span class="n">ipd</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="n">rearrange</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="s1">&#39;b d n -&gt; d (b n)&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">(),</span> <span class="n">rate</span><span class="o">=</span><span class="mi">44100</span><span class="p">))</span>
-
-        <span class="c1"># If we are not on the last timestep, compute the noisy image for the</span>
-        <span class="c1"># next timestep.</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">steps</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="c1"># If eta &gt; 0, adjust the scaling factor for the predicted noise</span>
-            <span class="c1"># downward according to the amount of additional noise to add</span>
-            <span class="n">ddim_sigma</span> <span class="o">=</span> <span class="n">eta</span> <span class="o">*</span> <span class="p">(</span><span class="n">sigmas</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">sigmas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span> <span class="o">*</span> \
-                <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alphas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">alphas</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span>
-            <span class="n">adjusted_sigma</span> <span class="o">=</span> <span class="p">(</span><span class="n">sigmas</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">ddim_sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span>
-
-            <span class="c1"># Recombine the predicted noise and predicted denoised image in the</span>
-            <span class="c1"># correct proportions for the next step</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="n">pred</span> <span class="o">*</span> <span class="n">alphas</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">eps</span> <span class="o">*</span> <span class="n">adjusted_sigma</span>
-
-            <span class="c1"># Add the correct amount of fresh noise</span>
-            <span class="k">if</span> <span class="n">eta</span><span class="p">:</span>
-                <span class="n">x</span> <span class="o">+=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">ddim_sigma</span>
-
-    <span class="c1"># If we are on the last timestep, output the denoised image</span>
-    <span class="k">return</span> <span class="n">pred</span>
-
-    
-<span class="k">def</span> <span class="nf">make_eps_model_fn</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">eps_model_fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_args</span><span class="p">):</span>
-        <span class="n">alphas</span><span class="p">,</span> <span class="n">sigmas</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">t_to_alpha_sigma</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_args</span><span class="p">)</span>
-        <span class="n">eps</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">sigmas</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="n">v</span> <span class="o">*</span> <span class="n">alphas</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">eps</span>
-    <span class="k">return</span> <span class="n">eps_model_fn</span>
-
-
-<span class="k">def</span> <span class="nf">make_autocast_model_fn</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">autocast_model_fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">amp</span><span class="o">.</span><span class="n">autocast</span><span class="p">(</span><span class="n">enabled</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">model</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">autocast_model_fn</span>
-
-
-<span class="k">def</span> <span class="nf">transfer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="n">t_2</span><span class="p">):</span>
-    <span class="n">alphas</span><span class="p">,</span> <span class="n">sigmas</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">t_to_alpha_sigma</span><span class="p">(</span><span class="n">t_1</span><span class="p">)</span>
-    <span class="n">next_alphas</span><span class="p">,</span> <span class="n">next_sigmas</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">t_to_alpha_sigma</span><span class="p">(</span><span class="n">t_2</span><span class="p">)</span>
-    <span class="n">pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">eps</span> <span class="o">*</span> <span class="n">sigmas</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span> <span class="o">/</span> <span class="n">alphas</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">pred</span> <span class="o">*</span> <span class="n">next_alphas</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="n">eps</span> <span class="o">*</span> <span class="n">next_sigmas</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">pred</span>
-
-
-<span class="k">def</span> <span class="nf">prk_step</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="n">t_2</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">):</span>
-    <span class="n">eps_model_fn</span> <span class="o">=</span> <span class="n">make_eps_model_fn</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-    <span class="n">t_mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">t_2</span> <span class="o">+</span> <span class="n">t_1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-    <span class="n">eps_1</span> <span class="o">=</span> <span class="n">eps_model_fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_args</span><span class="p">)</span>
-    <span class="n">x_1</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">transfer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">eps_1</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="n">t_mid</span><span class="p">)</span>
-    <span class="n">eps_2</span> <span class="o">=</span> <span class="n">eps_model_fn</span><span class="p">(</span><span class="n">x_1</span><span class="p">,</span> <span class="n">t_mid</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_args</span><span class="p">)</span>
-    <span class="n">x_2</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">transfer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">eps_2</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="n">t_mid</span><span class="p">)</span>
-    <span class="n">eps_3</span> <span class="o">=</span> <span class="n">eps_model_fn</span><span class="p">(</span><span class="n">x_2</span><span class="p">,</span> <span class="n">t_mid</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_args</span><span class="p">)</span>
-    <span class="n">x_3</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">transfer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">eps_3</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="n">t_2</span><span class="p">)</span>
-    <span class="n">eps_4</span> <span class="o">=</span> <span class="n">eps_model_fn</span><span class="p">(</span><span class="n">x_3</span><span class="p">,</span> <span class="n">t_2</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_args</span><span class="p">)</span>
-    <span class="n">eps_prime</span> <span class="o">=</span> <span class="p">(</span><span class="n">eps_1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">eps_2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">eps_3</span> <span class="o">+</span> <span class="n">eps_4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span>
-    <span class="n">x_new</span><span class="p">,</span> <span class="n">pred</span> <span class="o">=</span> <span class="n">transfer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">eps_prime</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="n">t_2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">x_new</span><span class="p">,</span> <span class="n">eps_prime</span><span class="p">,</span> <span class="n">pred</span>
-
-
-<span class="k">def</span> <span class="nf">plms_step</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">old_eps</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="n">t_2</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">):</span>
-    <span class="n">eps_model_fn</span> <span class="o">=</span> <span class="n">make_eps_model_fn</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-    <span class="n">eps</span> <span class="o">=</span> <span class="n">eps_model_fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_args</span><span class="p">)</span>
-    <span class="n">eps_prime</span> <span class="o">=</span> <span class="p">(</span><span class="mi">55</span> <span class="o">*</span> <span class="n">eps</span> <span class="o">-</span> <span class="mi">59</span> <span class="o">*</span> <span class="n">old_eps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">37</span> <span class="o">*</span> <span class="n">old_eps</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mi">9</span> <span class="o">*</span> <span class="n">old_eps</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span> <span class="o">/</span> <span class="mi">24</span>
-    <span class="n">x_new</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">transfer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">eps_prime</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="n">t_2</span><span class="p">)</span>
-    <span class="n">_</span><span class="p">,</span> <span class="n">pred</span> <span class="o">=</span> <span class="n">transfer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="n">t_2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">x_new</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">pred</span>
-
-
-<span class="nd">@torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">prk_sample</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">,</span> <span class="n">is_reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Draws samples from a model given starting noise using fourth-order</span>
-<span class="sd">    Pseudo Runge-Kutta.&quot;&quot;&quot;</span>
-    <span class="n">ts</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">new_ones</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
-    <span class="n">model_fn</span> <span class="o">=</span> <span class="n">make_autocast_model_fn</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_reverse</span><span class="p">:</span>
-        <span class="n">steps</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">steps</span><span class="p">,</span> <span class="n">steps</span><span class="o">.</span><span class="n">new_zeros</span><span class="p">([</span><span class="mi">1</span><span class="p">])])</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">trange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">steps</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">disable</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="n">x</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">pred</span> <span class="o">=</span> <span class="n">prk_step</span><span class="p">(</span><span class="n">model_fn</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">steps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">steps</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">callback</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="n">steps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;pred&#39;</span><span class="p">:</span> <span class="n">pred</span><span class="p">})</span>
-    <span class="k">return</span> <span class="n">x</span>
-
-
-<span class="nd">@torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">plms_sample</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">,</span> <span class="n">is_reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Draws samples from a model given starting noise using fourth order</span>
-<span class="sd">    Pseudo Linear Multistep.&quot;&quot;&quot;</span>
-    <span class="n">ts</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">new_ones</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
-    <span class="n">model_fn</span> <span class="o">=</span> <span class="n">make_autocast_model_fn</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_reverse</span><span class="p">:</span>
-        <span class="n">steps</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">steps</span><span class="p">,</span> <span class="n">steps</span><span class="o">.</span><span class="n">new_zeros</span><span class="p">([</span><span class="mi">1</span><span class="p">])])</span>
-    <span class="n">old_eps</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">trange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">steps</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">disable</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">old_eps</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="n">x</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">pred</span> <span class="o">=</span> <span class="n">prk_step</span><span class="p">(</span><span class="n">model_fn</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">steps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">steps</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">x</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">pred</span> <span class="o">=</span> <span class="n">plms_step</span><span class="p">(</span><span class="n">model_fn</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">old_eps</span><span class="p">,</span> <span class="n">steps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">steps</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">)</span>
-            <span class="n">old_eps</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">old_eps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">callback</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="n">steps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;pred&#39;</span><span class="p">:</span> <span class="n">pred</span><span class="p">})</span>
-    <span class="k">return</span> <span class="n">x</span>
-
-
-<span class="k">def</span> <span class="nf">pie_step</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="n">t_2</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">):</span>
-    <span class="n">eps_model_fn</span> <span class="o">=</span> <span class="n">make_eps_model_fn</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-    <span class="n">eps_1</span> <span class="o">=</span> <span class="n">eps_model_fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_args</span><span class="p">)</span>
-    <span class="n">x_1</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">transfer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">eps_1</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="n">t_2</span><span class="p">)</span>
-    <span class="n">eps_2</span> <span class="o">=</span> <span class="n">eps_model_fn</span><span class="p">(</span><span class="n">x_1</span><span class="p">,</span> <span class="n">t_2</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_args</span><span class="p">)</span>
-    <span class="n">eps_prime</span> <span class="o">=</span> <span class="p">(</span><span class="n">eps_1</span> <span class="o">+</span> <span class="n">eps_2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-    <span class="n">x_new</span><span class="p">,</span> <span class="n">pred</span> <span class="o">=</span> <span class="n">transfer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">eps_prime</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="n">t_2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">x_new</span><span class="p">,</span> <span class="n">eps_prime</span><span class="p">,</span> <span class="n">pred</span>
-
-
-<span class="k">def</span> <span class="nf">plms2_step</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">old_eps</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="n">t_2</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">):</span>
-    <span class="n">eps_model_fn</span> <span class="o">=</span> <span class="n">make_eps_model_fn</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-    <span class="n">eps</span> <span class="o">=</span> <span class="n">eps_model_fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_args</span><span class="p">)</span>
-    <span class="n">eps_prime</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">eps</span> <span class="o">-</span> <span class="n">old_eps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
-    <span class="n">x_new</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">transfer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">eps_prime</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="n">t_2</span><span class="p">)</span>
-    <span class="n">_</span><span class="p">,</span> <span class="n">pred</span> <span class="o">=</span> <span class="n">transfer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">t_1</span><span class="p">,</span> <span class="n">t_2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">x_new</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">pred</span>
-
-
-<span class="nd">@torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">pie_sample</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">,</span> <span class="n">is_reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Draws samples from a model given starting noise using second-order</span>
-<span class="sd">    Pseudo Improved Euler.&quot;&quot;&quot;</span>
-    <span class="n">ts</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">new_ones</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
-    <span class="n">model_fn</span> <span class="o">=</span> <span class="n">make_autocast_model_fn</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_reverse</span><span class="p">:</span>
-        <span class="n">steps</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">steps</span><span class="p">,</span> <span class="n">steps</span><span class="o">.</span><span class="n">new_zeros</span><span class="p">([</span><span class="mi">1</span><span class="p">])])</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">trange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">steps</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">disable</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="n">x</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">pred</span> <span class="o">=</span> <span class="n">pie_step</span><span class="p">(</span><span class="n">model_fn</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">steps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">steps</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">callback</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="n">steps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;pred&#39;</span><span class="p">:</span> <span class="n">pred</span><span class="p">})</span>
-    <span class="k">return</span> <span class="n">x</span>
-
-
-<span class="nd">@torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">plms2_sample</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">,</span> <span class="n">is_reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Draws samples from a model given starting noise using second order</span>
-<span class="sd">    Pseudo Linear Multistep.&quot;&quot;&quot;</span>
-    <span class="n">ts</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">new_ones</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
-    <span class="n">model_fn</span> <span class="o">=</span> <span class="n">make_autocast_model_fn</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_reverse</span><span class="p">:</span>
-        <span class="n">steps</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">steps</span><span class="p">,</span> <span class="n">steps</span><span class="o">.</span><span class="n">new_zeros</span><span class="p">([</span><span class="mi">1</span><span class="p">])])</span>
-    <span class="n">old_eps</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">trange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">steps</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">disable</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">old_eps</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">x</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">pred</span> <span class="o">=</span> <span class="n">pie_step</span><span class="p">(</span><span class="n">model_fn</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">steps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">steps</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">x</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">pred</span> <span class="o">=</span> <span class="n">plms2_step</span><span class="p">(</span><span class="n">model_fn</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">old_eps</span><span class="p">,</span> <span class="n">steps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">steps</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">ts</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">)</span>
-            <span class="n">old_eps</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">old_eps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">callback</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="n">steps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;pred&#39;</span><span class="p">:</span> <span class="n">pred</span><span class="p">})</span>
-    <span class="k">return</span> <span class="n">x</span>
-
-
-
-<span class="k">def</span> <span class="nf">make_cond_model_fn</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">cond</span><span class="p">):</span>
-  <span class="k">def</span> <span class="nf">cond_model_fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_args</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">cond</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_args</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">cond_model_fn</span>
-
-
-<span class="k">def</span> <span class="nf">demo</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">log_dict</span><span class="p">,</span> <span class="n">zsum</span><span class="p">,</span> <span class="n">zmix</span><span class="p">,</span> <span class="n">demo_samples</span><span class="p">,</span> <span class="n">demo_steps</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="mi">48000</span><span class="p">):</span>
-    <span class="n">demo_batch_size</span><span class="o">=</span><span class="n">zsum</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    
-    <span class="n">noise</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">([</span><span class="n">demo_batch_size</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">demo_samples</span><span class="p">])</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">device</span>          
-    <span class="n">model_fn</span> <span class="o">=</span> <span class="n">make_cond_model_fn</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">diffusion_ema</span><span class="p">,</span> <span class="n">zsum0</span><span class="p">)</span>
-
-    <span class="c1"># Run the sampler</span>
-    <span class="n">fakes</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">diffusion_ema</span><span class="p">,</span> <span class="n">noise</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">zsum</span><span class="p">)</span>
-    <span class="n">fakes</span> <span class="o">=</span> <span class="n">rearrange</span><span class="p">(</span><span class="n">fakes</span><span class="p">,</span> <span class="s1">&#39;b d n -&gt; d (b n)&#39;</span><span class="p">)</span>
-    <span class="n">log_dict</span><span class="p">[</span><span class="s1">&#39;zsum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wandb</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">sample_rate</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="s1">&#39;zsum&#39;</span><span class="p">)</span>
-    <span class="n">fakes</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">diffusion_ema</span><span class="p">,</span> <span class="n">noise</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">zsum</span><span class="p">)</span>
-    <span class="n">fakes</span> <span class="o">=</span> <span class="n">rearrange</span><span class="p">(</span><span class="n">fakes</span><span class="p">,</span> <span class="s1">&#39;b d n -&gt; d (b n)&#39;</span><span class="p">)</span>
-    <span class="n">log_dict</span><span class="p">[</span><span class="s1">&#39;zsum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wandb</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">sample_rate</span><span class="o">=</span><span class="n">sr</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="s1">&#39;zsum&#39;</span><span class="p">)</span>                                                            
-    <span class="k">return</span> <span class="n">log_dict</span>
-    
-</pre></div>
-
-    </div>
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_crash_schedule" class="doc_header"><code>get_crash_schedule</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L282" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_crash_schedule</code>(<strong><code>t</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="alpha_sigma_to_t" class="doc_header"><code>alpha_sigma_to_t</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L288" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>alpha_sigma_to_t</code>(<strong><code>alpha</code></strong>, <strong><code>sigma</code></strong>)</p>
+</blockquote>
+<p>Returns a timestep, given the scaling factors for the clean image and for
+the noise.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="sample" class="doc_header"><code>sample</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L294" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>sample</code>(<strong><code>model</code></strong>, <strong><code>x</code></strong>, <strong><code>steps</code></strong>, <strong><code>eta</code></strong>, <strong><code>logits</code></strong>, <strong><code>post_every</code></strong>=<em><code>25</code></em>)</p>
+</blockquote>
+<p>Draws samples from a model given starting noise.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="make_eps_model_fn" class="doc_header"><code>make_eps_model_fn</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L339" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>make_eps_model_fn</code>(<strong><code>model</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="make_autocast_model_fn" class="doc_header"><code>make_autocast_model_fn</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L348" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>make_autocast_model_fn</code>(<strong><code>model</code></strong>, <strong><code>enabled</code></strong>=<em><code>True</code></em>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="transfer" class="doc_header"><code>transfer</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L355" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>transfer</code>(<strong><code>x</code></strong>, <strong><code>eps</code></strong>, <strong><code>t_1</code></strong>, <strong><code>t_2</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="prk_step" class="doc_header"><code>prk_step</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L363" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>prk_step</code>(<strong><code>model</code></strong>, <strong><code>x</code></strong>, <strong><code>t_1</code></strong>, <strong><code>t_2</code></strong>, <strong><code>extra_args</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="plms_step" class="doc_header"><code>plms_step</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L378" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plms_step</code>(<strong><code>model</code></strong>, <strong><code>x</code></strong>, <strong><code>old_eps</code></strong>, <strong><code>t_1</code></strong>, <strong><code>t_2</code></strong>, <strong><code>extra_args</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="prk_sample" class="doc_header"><code>prk_sample</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L387" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>prk_sample</code>(<strong><code>model</code></strong>, <strong><code>x</code></strong>, <strong><code>steps</code></strong>, <strong><code>extra_args</code></strong>, <strong><code>is_reverse</code></strong>=<em><code>False</code></em>, <strong><code>callback</code></strong>=<em><code>None</code></em>)</p>
+</blockquote>
+<p>Draws samples from a model given starting noise using fourth-order
+Pseudo Runge-Kutta.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="plms_sample" class="doc_header"><code>plms_sample</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L402" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plms_sample</code>(<strong><code>model</code></strong>, <strong><code>x</code></strong>, <strong><code>steps</code></strong>, <strong><code>extra_args</code></strong>, <strong><code>is_reverse</code></strong>=<em><code>False</code></em>, <strong><code>callback</code></strong>=<em><code>None</code></em>)</p>
+</blockquote>
+<p>Draws samples from a model given starting noise using fourth order
+Pseudo Linear Multistep.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="pie_step" class="doc_header"><code>pie_step</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L423" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>pie_step</code>(<strong><code>model</code></strong>, <strong><code>x</code></strong>, <strong><code>t_1</code></strong>, <strong><code>t_2</code></strong>, <strong><code>extra_args</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="plms2_step" class="doc_header"><code>plms2_step</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L433" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plms2_step</code>(<strong><code>model</code></strong>, <strong><code>x</code></strong>, <strong><code>old_eps</code></strong>, <strong><code>t_1</code></strong>, <strong><code>t_2</code></strong>, <strong><code>extra_args</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="pie_sample" class="doc_header"><code>pie_sample</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L442" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>pie_sample</code>(<strong><code>model</code></strong>, <strong><code>x</code></strong>, <strong><code>steps</code></strong>, <strong><code>extra_args</code></strong>, <strong><code>is_reverse</code></strong>=<em><code>False</code></em>, <strong><code>callback</code></strong>=<em><code>None</code></em>)</p>
+</blockquote>
+<p>Draws samples from a model given starting noise using second-order
+Pseudo Improved Euler.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="plms2_sample" class="doc_header"><code>plms2_sample</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L457" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plms2_sample</code>(<strong><code>model</code></strong>, <strong><code>x</code></strong>, <strong><code>steps</code></strong>, <strong><code>extra_args</code></strong>, <strong><code>is_reverse</code></strong>=<em><code>False</code></em>, <strong><code>callback</code></strong>=<em><code>None</code></em>)</p>
+</blockquote>
+<p>Draws samples from a model given starting noise using second order
+Pseudo Linear Multistep.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="make_cond_model_fn" class="doc_header"><code>make_cond_model_fn</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L479" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>make_cond_model_fn</code>(<strong><code>model</code></strong>, <strong><code>cond</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="demo" class="doc_header"><code>demo</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L487" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>demo</code>(<strong><code>model</code></strong>, <strong><code>log_dict</code></strong>, <strong><code>zsum</code></strong>, <strong><code>zmix</code></strong>, <strong><code>demo_samples</code></strong>, <strong><code>demo_steps</code></strong>=<em><code>250</code></em>, <strong><code>sr</code></strong>=<em><code>48000</code></em>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -540,7 +726,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_stems_faders" class="doc_header"><code>get_stems_faders</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L271" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_stems_faders</code>(<strong><code>batch</code></strong>, <strong><code>dl</code></strong>, <strong><code>maxstems</code></strong>=<em><code>6</code></em>)</p>
+<h4 id="get_stems_faders" class="doc_header"><code>get_stems_faders</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L504" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_stems_faders</code>(<strong><code>batch</code></strong>, <strong><code>dl</code></strong>, <strong><code>maxstems</code></strong>=<em><code>6</code></em>)</p>
 </blockquote>
 <p>grab some more audio stems and set faders</p>
 
@@ -578,7 +764,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="main" class="doc_header"><code>main</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L282" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>main</code>()</p>
+<h4 id="main" class="doc_header"><code>main</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/train_aa_mixer.py#L515" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>main</code>()</p>
 </blockquote>
 
 </div>
