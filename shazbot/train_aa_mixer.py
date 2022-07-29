@@ -616,7 +616,7 @@ def main():
                         }
 
                     if step % args.demo_every == 0:
-                        log_dict = demo(accelerator.unwrap_model(aa_model), log_dict, zsum, zmix, batch.shape[1])
+                        log_dict = demo(accelerator.unwrap_model(dvae), log_dict, zsum, zmix, batch.shape[1])
 
                     if use_wandb: wandb.log(log_dict, step=step)
 
