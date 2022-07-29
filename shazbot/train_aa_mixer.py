@@ -311,9 +311,9 @@ def sample(model, x, steps, eta, logits, post_every=25):
         pred = x * alphas[i] - v * sigmas[i]
         eps = x * sigmas[i] + v * alphas[i]
 
-        if 0 == i % post_every: # share intermediate results along the way
-            # can't get the "plot" part of "plot and hear" to work right
-            display(ipd.Audio(rearrange(pred, 'b d n -> d (b n)').cpu(), rate=44100))
+        #if 0 == i % post_every: # share intermediate results along the way
+        #    # can't get the "plot" part of "plot and hear" to work right
+        #    display(ipd.Audio(rearrange(pred, 'b d n -> d (b n)').cpu(), rate=44100))
 
         # If we are not on the last timestep, compute the noisy image for the
         # next timestep.
@@ -484,7 +484,7 @@ def make_cond_model_fn(model, cond):
   return cond_model_fn
 
 
-def demo(model, log_dict, zsum, zmix, demo_samples, demo_steps=250, sr=48000):
+def demo(model, log_dict, zsum, zmix, demo_samples, step, demo_steps=250, sr=48000):
     demo_batch_size=zsum.shape[0]
 
     noise = torch.randn([demo_batch_size, 2, demo_samples]).to(model.device)
@@ -493,10 +493,16 @@ def demo(model, log_dict, zsum, zmix, demo_samples, demo_steps=250, sr=48000):
     # Run the sampler
     fakes = sample(model.diffusion_ema, noise, 500, 1, zsum)
     fakes = rearrange(fakes, 'b d n -> d (b n)')
+    filename = f'zsum_{step:08}.wav'
+    fakes = fakes.clamp(-1, 1).mul(32767).to(torch.int16).cpu()
+    torchaudio.save(filename, fakes, self.sample_rate)
     log_dict['zsum'] = wandb.Audio(filename, sample_rate=sr, caption='zsum')
-    fakes = sample(model.diffusion_ema, noise, 500, 1, zsum)
+    fakes = sample(model.diffusion_ema, noise, 500, 1, zmix)
     fakes = rearrange(fakes, 'b d n -> d (b n)')
-    log_dict['zsum'] = wandb.Audio(filename, sample_rate=sr, caption='zsum')
+    filename = f'zmix_{step:08}.wav'
+    fakes = fakes.clamp(-1, 1).mul(32767).to(torch.int16).cpu()
+    torchaudio.save(filename, fakes, self.sample_rate)
+    log_dict['zmix'] = wandb.Audio(filename, sample_rate=sr, caption='zmix')
     return log_dict
 
 
@@ -615,8 +621,37 @@ def main():
                             'zmix_pca': pca_point_cloud(zmix.detach())
                         }
 
-                    if step % args.demo_every == 0:
-                        log_dict = demo(accelerator.unwrap_model(dvae), log_dict, zsum, zmix, batch.shape[1])
+                        if (step > 0) and (step % args.demo_every == 0):
+                            hprint("\nMaking demo stuff")
+                            #demo(accelerator.unwrap_model(dvae), log_dict, zsum.detach(), zmix.detach(),  batch.shape[-1], step)
+                            zsum = rearrange(zsum, 'b n d -> b d n').detach()
+                            zmix = rearrange(zmix, 'b n d -> b d n').detach()
+
+                            print(f"zsum.shape = {zsum.shape}")
+                            noise = torch.randn([zsum.shape[0], 2, batch.shape[-1]]).to(accelerator.device)
+                            accelerator.unwrap_model(dvae).diffusion_ema.to(accelerator.device)
+                            model_fn = make_cond_model_fn(accelerator.unwrap_model(dvae).diffusion_ema, zsum)
+                            print(f"noise.shape = {noise.shape}")
+
+                            # Run the sampler
+                            with torch.cuda.amp.autocast():
+                                hprint("\Calling sampler for zsum")
+                                fakes = sample(accelerator.unwrap_model(dvae).diffusion_ema, noise, 500, 1, zsum)
+                            fakes = rearrange(fakes, 'b d n -> d (b n)')
+                            zsum_filename = f'zsum_{step:08}.wav'
+                            fakes = fakes.clamp(-1, 1).mul(32767).to(torch.int16).cpu()
+                            torchaudio.save(zsum_filename, fakes, args.sample_rate)
+                            log_dict['zsum'] = wandb.Audio(zsum_filename, sample_rate=args.sample_rate, caption='zsum')
+
+                            with torch.cuda.amp.autocast():
+                                hprint("\Calling sampler for zmix")
+                                fakes = sample(accelerator.unwrap_model(dvae).diffusion_ema, noise, 500, 1, zmix)
+                            fakes = rearrange(fakes, 'b d n -> d (b n)')
+                            zmix_filename = f'zmix_{step:08}.wav'
+                            fakes = fakes.clamp(-1, 1).mul(32767).to(torch.int16).cpu()
+                            torchaudio.save(zmix_filename, fakes, args.sample_rate)
+                            log_dict['zmix'] = wandb.Audio(zmix_filename, sample_rate=args.sample_rate, caption='zmix')
+                            hprint("Done making demo stuff")
 
                     if use_wandb: wandb.log(log_dict, step=step)
 
