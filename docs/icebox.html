@@ -54,7 +54,7 @@ nb_path: "nbs/icebox.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="init_jukebox_sample_rate" class="doc_header"><code>init_jukebox_sample_rate</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/icebox.py#L20" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>init_jukebox_sample_rate</code>(<strong><code>sr</code></strong>=<em><code>44100</code></em>)</p>
+<h4 id="init_jukebox_sample_rate" class="doc_header"><code>init_jukebox_sample_rate</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/icebox.py#L25" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>init_jukebox_sample_rate</code>(<strong><code>sr</code></strong>=<em><code>44100</code></em>)</p>
 </blockquote>
 <p>SHH added this util to preserve rest of code minimall-modified</p>
 <table>
@@ -96,7 +96,31 @@ nb_path: "nbs/icebox.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="audio_for_jbx" class="doc_header"><code>audio_for_jbx</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/icebox.py#L28" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>audio_for_jbx</code>(<strong><code>audio</code></strong>, <strong><code>trunc_sec</code></strong>=<em><code>None</code></em>, <strong><code>device</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="stereo" class="doc_header"><code>stereo</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/icebox.py#L33" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>stereo</code>(<strong><code>signal</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="audio_for_jbx" class="doc_header"><code>audio_for_jbx</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/icebox.py#L44" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>audio_for_jbx</code>(<strong><code>audio</code></strong>, <strong><code>trunc_sec</code></strong>=<em><code>None</code></em>, <strong><code>device</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Readies an audio TENSOR for Jukebox.</p>
 
@@ -121,7 +145,7 @@ nb_path: "nbs/icebox.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="load_audio_for_jbx" class="doc_header"><code>load_audio_for_jbx</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/icebox.py#L46" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_audio_for_jbx</code>(<strong><code>path</code></strong>, <strong><code>offset</code></strong>=<em><code>0.0</code></em>, <strong><code>dur</code></strong>=<em><code>None</code></em>, <strong><code>trunc_sec</code></strong>=<em><code>None</code></em>, <strong><code>device</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="load_audio_for_jbx" class="doc_header"><code>load_audio_for_jbx</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/icebox.py#L64" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_audio_for_jbx</code>(<strong><code>path</code></strong>, <strong><code>offset</code></strong>=<em><code>0.0</code></em>, <strong><code>dur</code></strong>=<em><code>None</code></em>, <strong><code>trunc_sec</code></strong>=<em><code>None</code></em>, <strong><code>device</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Loads a path for use with Jukebox.</p>
 
@@ -160,7 +184,7 @@ nb_path: "nbs/icebox.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="IceBoxEncoder" class="doc_header"><code>class</code> <code>IceBoxEncoder</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/icebox.py#L58" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>IceBoxEncoder</code>(<strong><code>global_args</code></strong>, <strong><code>device</code></strong>, <strong><code>port</code></strong>=<em><code>9500</code></em>) :: <code>Module</code></p>
+<h2 id="IceBoxModel" class="doc_header"><code>class</code> <code>IceBoxModel</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/icebox.py#L77" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>IceBoxModel</code>(<strong><code>global_args</code></strong>, <strong><code>device</code></strong>, <strong><code>port</code></strong>=<em><code>9500</code></em>) :: <code>Module</code></p>
 </blockquote>
 <p>Base class for all neural network modules.</p>
 <p>Your models should also subclass this class.</p>
@@ -207,6 +231,38 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 </div>
     {% endraw %}
 
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="batch_it_crazy" class="doc_header"><code>batch_it_crazy</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/icebox.py#L118" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>batch_it_crazy</code>(<strong><code>x</code></strong>, <strong><code>win_len</code></strong>)</p>
+</blockquote>
+<p>(pun intended) Chop up long sequence into a batch of win_len windows</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Main-execution">Main execution<a class="anchor-link" href="#Main-execution"> </a></h2>
@@ -224,7 +280,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="main" class="doc_header"><code>main</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/icebox.py#L92" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>main</code>()</p>
+<h4 id="main" class="doc_header"><code>main</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/icebox.py#L127" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>main</code>()</p>
 </blockquote>
 
 </div>
@@ -240,22 +296,6 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>device =  cuda
-accelerator =  &lt;accelerate.accelerator.Accelerator object at 0x7fb99030c430&gt;
-ac = {}
-</pre>
-</div>
-</div>
-
-</div>
-</div>
 
 </div>
     {% endraw %}

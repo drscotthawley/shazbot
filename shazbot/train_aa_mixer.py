@@ -222,7 +222,7 @@ class AudioAlgebra(nn.Module):
         "z0" denotes an embedding from the frozen encoder, "z" denotes re-mapped embeddings
         in (hopefully) the learned vector space"""
         with torch.cuda.amp.autocast():
-            zs, z0s, zsum = [], [], None
+            zs, z0s, zsum, z0sum = [], [], None, None
             mix = torch.zeros_like(stems[0]).float()
             #print("mix.shape = ",mix.shape)
             for s, f in zip(stems, faders):
@@ -230,6 +230,7 @@ class AudioAlgebra(nn.Module):
                 with torch.no_grad():
                     #z0 = self.encoder.encode(mix_s).float()  # initial/frozen embedding/latent for that input
                     z0 = ad_encode_it(mix_s, self.device, self.enc_model, sample_size=self.sample_size, num_quantizers=self.num_quantizers)
+                z0sum = z0 if z0sum is None else z0sum + z0
                 #print("z0.shape = ",z0.shape)  # most likely [8,32,152]
                 z0 = rearrange(z0, 'b d n -> b n d')
                 z = self.reembedding(z0).float()   # <-- this is the main work of the model
@@ -239,14 +240,16 @@ class AudioAlgebra(nn.Module):
                 z0s.append(z0)            # save a list of individual z0's
 
             with torch.no_grad():
-                #zmix0 = self.encoder.encode(mix).float()  # compute frozen embedding / latent for the full mix
-                zmix0 = ad_encode_it(mix, self.device, self.enc_model, sample_size=self.sample_size, num_quantizers=self.num_quantizers)
-            zmix0 = rearrange(zmix0, 'b d n -> b n d')
-            zmix = self.reembedding(zmix0).float()        # map that according to our learned re-embedding. this will be the "target" in the metric loss
+                #z0mix = self.encoder.encode(mix).float()  # compute frozen embedding / latent for the full mix
+                z0mix = ad_encode_it(mix, self.device, self.enc_model, sample_size=self.sample_size, num_quantizers=self.num_quantizers)
+            z0mix = rearrange(z0mix, 'b d n -> b n d')
+            zmix = self.reembedding(z0mix).float()        # map that according to our learned re-embedding. this will be the "target" in the metric loss
+            z0mix = rearrange(z0mix, 'b n d -> b d n')
 
-            archive = {'zs':zs, 'mix':mix, 'znegsum':None, 'z0s': z0s}
+            archive = {'zs':zs, 'mix':mix, 'znegsum':None, 'z0s': z0s, 'z0sum':z0sum, 'z0mix':z0mix}
 
         return zsum, zmix, archive    # zsum = pred, zmix = target, and "archive" of extra stuff zs & zmix are just for extra info
+
 
     def mag(self, v):
         return torch.norm( v, dim=(1,2) ) # L2 / Frobenius / Euclidean
@@ -497,7 +500,7 @@ def demo(model, log_dict, zsum, zmix, demo_samples, step, demo_steps=250, sr=480
     fakes = fakes.clamp(-1, 1).mul(32767).to(torch.int16).cpu()
     torchaudio.save(filename, fakes, self.sample_rate)
     log_dict['zsum'] = wandb.Audio(filename, sample_rate=sr, caption='zsum')
-    fakes = sample(model.diffusion_ema, noise, 500, 1, zmix)
+    fakes = sample(model.diffusion_ema, noise, demo_steps, 1, zmix)
     fakes = rearrange(fakes, 'b d n -> d (b n)')
     filename = f'zmix_{step:08}.wav'
     fakes = fakes.clamp(-1, 1).mul(32767).to(torch.int16).cpu()
@@ -621,22 +624,30 @@ def main():
                             'zmix_pca': pca_point_cloud(zmix.detach())
                         }
 
-                        if (step > 0) and (step % args.demo_every == 0):
+                        if (step % args.demo_every == 0):
                             hprint("\nMaking demo stuff")
-                            #demo(accelerator.unwrap_model(dvae), log_dict, zsum.detach(), zmix.detach(),  batch.shape[-1], step)
-                            zsum = rearrange(zsum, 'b n d -> b d n').detach()
-                            zmix = rearrange(zmix, 'b n d -> b d n').detach()
 
-                            print(f"zsum.shape = {zsum.shape}")
+                            mix_filename = f'mix_{step:08}.wav'
+                            reals = zarchive['mix'].clamp(-1, 1).mul(32767).to(torch.int16).cpu()
+                            reals = rearrange(reals, 'b d n -> d (b n)')
+                            print("reals.shape = ",reals.shape)
+                            torchaudio.save(mix_filename, reals, args.sample_rate)
+                            log_dict['mix'] = wandb.Audio(mix_filename, sample_rate=args.sample_rate, caption='mix')
+
+                            #demo(accelerator.unwrap_model(dvae), log_dict, zsum.detach(), zmix.detach(),  batch.shape[-1], step)
+                            zsum = zarchive['z0sum'].detach() # rearrange(zarchive['z0sum'], 'b n d -> b d n').detach()
+                            zmix = zarchive['z0mix'].detach() #rearrange(zarchive['z0mix'], 'b n d -> b d n').detach()
+
+                            hprint(f"zsum.shape = {zsum.shape}")
                             noise = torch.randn([zsum.shape[0], 2, batch.shape[-1]]).to(accelerator.device)
                             accelerator.unwrap_model(dvae).diffusion_ema.to(accelerator.device)
                             model_fn = make_cond_model_fn(accelerator.unwrap_model(dvae).diffusion_ema, zsum)
-                            print(f"noise.shape = {noise.shape}")
+                            hprint(f"noise.shape = {noise.shape}")
 
                             # Run the sampler
                             with torch.cuda.amp.autocast():
-                                hprint("\Calling sampler for zsum")
-                                fakes = sample(accelerator.unwrap_model(dvae).diffusion_ema, noise, 500, 1, zsum)
+                                hprint("Calling sampler for zsum")
+                                fakes = sample(accelerator.unwrap_model(dvae).diffusion_ema, noise, args.demo_steps, 1, zsum)
                             fakes = rearrange(fakes, 'b d n -> d (b n)')
                             zsum_filename = f'zsum_{step:08}.wav'
                             fakes = fakes.clamp(-1, 1).mul(32767).to(torch.int16).cpu()
@@ -644,8 +655,8 @@ def main():
                             log_dict['zsum'] = wandb.Audio(zsum_filename, sample_rate=args.sample_rate, caption='zsum')
 
                             with torch.cuda.amp.autocast():
-                                hprint("\Calling sampler for zmix")
-                                fakes = sample(accelerator.unwrap_model(dvae).diffusion_ema, noise, 500, 1, zmix)
+                                hprint("Calling sampler for zmix")
+                                fakes = sample(accelerator.unwrap_model(dvae).diffusion_ema, noise, args.demo_steps, 1, zmix)
                             fakes = rearrange(fakes, 'b d n -> d (b n)')
                             zmix_filename = f'zmix_{step:08}.wav'
                             fakes = fakes.clamp(-1, 1).mul(32767).to(torch.int16).cpu()

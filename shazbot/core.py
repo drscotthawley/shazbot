@@ -40,7 +40,7 @@ def get_accel_config(filename='~/.cache/huggingface/accelerate/default_config.ya
     if os.getenv('NUM_MACHINES')    is not None: ac['num_machines']    = os.getenv('NUM_MACHINES')
     if os.getenv('NUM_PROCESSES')   is not None: ac['num_processes']   = os.getenv('NUM_PROCESSES')
 
-    return {}# ac
+    return ac
 
 # Cell
 class HostPrinter():
