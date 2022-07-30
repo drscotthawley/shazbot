@@ -29,7 +29,7 @@ import subprocess
 from .viz import embeddings_table, pca_point_cloud, audio_spectrogram_image, tokens_spectrogram_image
 from .core import n_params, save, freeze, HostPrinter, Mish
 #import shazbot.blocks_utils as blocks_utils
-from .icebox import load_audio_for_jbx, IceBoxEncoder
+from .icebox import load_audio_for_jbx, IceBoxModel
 from .data import MultiStemDataset
 
 
@@ -541,7 +541,7 @@ def main():
     hprint(f"Using {encoder_choice} as encoder")
     if 'icebox' == encoder_choice:
         args.latent_dim = 64  # overwrite latent_dim with what Jukebox requires
-        encoder = IceBoxEncoder(args, device)
+        encoder = IceBoxModel(args, device)
     elif 'ad' == encoder_choice:
         dvae = DiffusionDVAE(args, device)
         #dvae = setup_weights(dvae, accelerator, device)

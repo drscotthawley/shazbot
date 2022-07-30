@@ -124,11 +124,17 @@ def batch_it_crazy(x, win_len):
     return rearrange(xpad, 'd (b n) -> b d n', n=win_len)
 
 # Cell
+#|export
 def main():
     #from dotmap import DotMap  # only used for setting some args
     from prefigure.prefigure import get_all_args, push_wandb_config
 
-    args = get_all_args()
+    try:
+        args = get_all_args()
+    except:
+        print("Can't read config file. Exiting")
+        return
+
     torch.manual_seed(args.seed)
 
     try:
