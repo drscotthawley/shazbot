@@ -15,6 +15,7 @@ from jukebox.hparams import Hyperparams, setup_hparams
 import os
 import accelerate
 from .core import get_accel_config, HostPrinter
+from .viz import embeddings_table, pca_point_cloud, audio_spectrogram_image, tokens_spectrogram_image, plot_jukebox_embeddings
 import librosa
 
 # Cell
@@ -151,12 +152,13 @@ def main():
     hprint(f"ac = {ac}")
     port = ac['main_process_port']
     #args = DotMap()
+    args.name = 'icebox-test'
     args.sample_rate = 44100
     args.rank = ac['machine_rank']
     os.environ["RANK"] = str(args.rank)
     if device != 'cpu':
         icebox = IceBoxModel(args, device, port=port)
-        hprint("icebox config finished!")
+        hprint("IceBoxModel config finished!")
     else:
         print("can't start up icebox because no GPUs are available.")
 
@@ -171,18 +173,55 @@ def main():
     hprint(f"Encoding audio")
     with torch.cuda.amp.autocast():
         zs = accelerator.unwrap_model(icebox).encode(input_audio)
+        hprint(f"  len(zs) = {len(zs)}")
+        for i, z in enumerate(zs):
+            hprint(f"  zs[{i}].shape = {z.shape}")
 
     hprint(f"Decoding audio")
     decoded = accelerator.unwrap_model(icebox).decode(zs).transpose(-2, -1)
-    hprint(f"1 decoded.shape = {decoded.shape}")
-    decoded = torch.squeeze(decoded, dim=0).cpu()
-    hprint(f"2 decoded.shape = {decoded.shape}")
-    outfilename = 'test_audio_out.wav'
+    hprint(f"  decoded.shape = {decoded.shape}")
+    output_audio = torch.squeeze(decoded, dim=0).cpu()
+    #output_audio *=  0.2 # it's too loud for some reason
+    hprint(f"  output_audio.shape = {output_audio.shape}")
+    output_filename = 'test_audio_out.wav'
 
-    hprint(f"Saving output audio {outfilename}...")
-    torchaudio.save(outfilename, decoded, args.sample_rate)
+    hprint(f"Saving output audio {output_filename}...")
+    torchaudio.save(output_filename, output_audio, args.sample_rate)
 
-    hprint("Finished!")
+    input_audio = torch.squeeze(input_audio, dim=-1).cpu()
+    hprint(f"input_audio.shape = {input_audio.shape}")
+
+    use_wandb = accelerator.is_main_process and args.name
+    if use_wandb:
+        import wandb
+        hprint("Now sending to WandB")
+        config = vars(args)
+        wandb.init(project=args.name, config=config, save_code=True)
+        log_dict = {}
+
+        log_dict['input_audio']  = wandb.Audio(input_filename, sample_rate=args.sample_rate, caption='input_audio')
+        log_dict['output_audio'] = wandb.Audio(output_filename, sample_rate=args.sample_rate, caption='output_audio')
+        log_dict[f'input_melspec_left'] = wandb.Image(audio_spectrogram_image(input_audio, print=hprint))
+        log_dict[f'output_melspec_left'] = wandb.Image(audio_spectrogram_image(output_audio, print=hprint))
+
+        if False:
+            hprint("Logging embeddings...")
+            log_dict[f'zplots'] = wandb.log(plot_jukebox_embeddings(zs))
+            #log_dict[f'zplots2'] = wandb.Image(plot_jukebox_embeddings(zs))
+
+        # make a 3d cube of jukebox embeddings
+        em_plot_arr =torch.zeros((3,zs[0].shape[-1]))
+        em_plot_arr[0,:] = zs[0][0]
+        em_plot_arr[1,:] = zs[1][0].repeat(4)
+        em_plot_arr[2,:-4] = zs[2][0].repeat(4*4)
+        absmax = torch.max(torch.abs(em_plot_arr))
+        em_plot_arr = (em_plot_arr - em_plot_arr.mean()) / absmax # normalize a bit
+        log_dict[f'emb_3d_color=time'] = pca_point_cloud(em_plot_arr.unsqueeze(0), color_scheme='n')
+
+        hprint(f"log_dict = {log_dict}")
+        wandb.log(log_dict, step=0)
+
+    hprint("\n--------------------\nFinished!\n-------------")
 
 if __name__ == '__main__':  # often this will only be called for testing
     main()

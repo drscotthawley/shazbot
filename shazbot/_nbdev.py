@@ -66,8 +66,10 @@ index = {"append_dims": "blocks_utils.ipynb",
          "proj_pca": "viz.ipynb",
          "pca_point_cloud": "viz.ipynb",
          "spectrogram_image": "viz.ipynb",
+         "print_stats": "viz.ipynb",
          "audio_spectrogram_image": "viz.ipynb",
-         "tokens_spectrogram_image": "viz.ipynb"}
+         "tokens_spectrogram_image": "viz.ipynb",
+         "plot_jukebox_embeddings": "viz.ipynb"}
 
 modules = ["blocks_utils.py",
            "chunkadelic.py",

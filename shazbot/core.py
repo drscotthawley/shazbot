@@ -45,11 +45,11 @@ def get_accel_config(filename='~/.cache/huggingface/accelerate/default_config.ya
 # Cell
 class HostPrinter():
     "lil accelerate utility for only printing on host node"
-    def __init__(self, accelerator):
-        self.accelerator = accelerator
+    def __init__(self, accelerator, tag='\033[96m', untag='\033[0m'): #added some colors
+        self.accelerator, self.tag, self.untag = accelerator, tag, untag
     def __call__(self, s:str):
         if self.accelerator.is_main_process:
-            print(s, flush=True)
+            print(self.tag + s + self.untag, flush=True)
 
 # Cell
 def save(accelerator, args, model, opt=None, epoch=None, step=None):
