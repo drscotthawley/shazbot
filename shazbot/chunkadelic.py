@@ -24,7 +24,7 @@ def load_file(
     "this loads an audio file as a torch tensor"
     audio, in_sr = torchaudio.load(filename)
     if in_sr != sr:
-        print(f"Resampling {filename} from {in_sr} Hz to {sr} Hz")
+        print(f"Resampling {filename} from {in_sr} Hz to {sr} Hz",flush=True)
         resample_tf = T.Resample(in_sr, sr)
         audio = resample_tf(audio)
     return audio
@@ -65,7 +65,7 @@ def blow_chunks(
         if (not strip) or (not is_silence(chunk, thresh=thresh)):
             torchaudio.save(out_filename, chunk, sr)
         else:
-            print(f"skipping chunk {out_filename} because it's 'silent' (below threhold of {thresh} dB).")
+            print(f"skipping chunk {out_filename} because it's 'silent' (below threhold of {thresh} dB).",flush=True)
         start, i = start + int(overlap * chunk_size), i + 1
     return
 
@@ -90,13 +90,13 @@ def process_one_file(
             break
 
     if new_filename is None:
-        print(f"ERROR: Something went wrong with name of input file {filename}. Skipping.")
+        print(f"ERROR: Something went wrong with name of input file {filename}. Skipping.",flush=True)
         return
     try:
         audio = load_file(filename, sr=args.sr)
         blow_chunks(audio, new_filename, args.chunk_size, sr=args.sr, overlap=args.overlap, strip=args.strip, thresh=args.thresh)
     except Exception as e:
-        print(f"Error loading {filename} or writing chunks. Skipping.")
+        print(f"Error loading {filename} or writing chunks. Skipping.", flush=True)
 
     return
 
@@ -108,6 +108,7 @@ def main():
     parser.add_argument('--overlap', type=float, default=0.5, help='Overlap factor')
     parser.add_argument('--strip', action='store_true', help='Strips silence: chunks with max dB below <thresh> are not outputted')
     parser.add_argument('--thresh', type=int, default=-70, help='threshold in dB for determining what constitutes silence')
+    parser.add_argument('--workers', type=int, default=min(32, os.cpu_count() + 4), help='Maximum number of workers to use (default: all)')
     parser.add_argument('--nomix', action='store_true',  help='(BDCT Dataset specific) exclude output of "*/Audio Files/*Mix*"')
     parser.add_argument('output_path', help='Path of output for chunkified data')
     parser.add_argument('input_paths', nargs='+', help='Path(s) of a file or a folder of files. (recursive)')
@@ -126,6 +127,6 @@ def main():
 
     print("Processing files (in parallel)")
     wrapper = partial(process_one_file, filenames, args)
-    r = process_map(wrapper, range(0, n), chunksize=1, max_workers=48)  # different chunksize used by tqdm. max_workers is to avoid annoying other ppl
+    r = process_map(wrapper, range(0, n), chunksize=1, max_workers=args.workers)  # different chunksize used by tqdm. max_workers is to avoid annoying other ppl
 
     print("Finished")
