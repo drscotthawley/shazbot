@@ -22,6 +22,7 @@ def stf_up(
     audio:torch.tensor,  # long audio file to be chunked
     new_filename:str    # stem of new filename(s) to be output as spectrogram images
     ):
+    "coverts audio to stft image and saves it"
     im = audio_spectrogram_image(audio, justimage=True)  # should already be a PIL image
     print(f"saving new file = {new_filename}")
     im.save(new_filename)
