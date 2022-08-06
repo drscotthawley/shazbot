@@ -53,7 +53,7 @@ nb_path: "nbs/core.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="is_silence" class="doc_header"><code>is_silence</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L17" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>is_silence</code>(<strong><code>audio</code></strong>, <strong><code>thresh</code></strong>=<em><code>-70</code></em>)</p>
+<h4 id="is_silence" class="doc_header"><code>is_silence</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L19" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>is_silence</code>(<strong><code>audio</code></strong>, <strong><code>thresh</code></strong>=<em><code>-70</code></em>)</p>
 </blockquote>
 <p>checks if entire clip is 'silence' below some dB threshold</p>
 <table>
@@ -117,6 +117,103 @@ nb_path: "nbs/core.ipynb"
 </div>
     {% endraw %}
 
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="load_audio" class="doc_header"><code>load_audio</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L28" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_audio</code>(<strong><code>filename</code></strong>:<code>str</code>, <strong><code>sr</code></strong>=<em><code>48000</code></em>)</p>
+</blockquote>
+<p>this loads an audio file as a torch tensor</p>
+<table>
+<thead><tr>
+<th></th>
+<th>Type</th>
+<th>Default</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>filename</code></strong></td>
+<td><code>str</code></td>
+<td></td>
+<td>file to load</td>
+</tr>
+<tr>
+<td><strong><code>sr</code></strong></td>
+<td><code>int</code></td>
+<td><code>48000</code></td>
+<td>sample rate to read/resample at</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="makedir" class="doc_header"><code>makedir</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L41" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>makedir</code>(<strong><code>path</code></strong>:<code>str</code>)</p>
+</blockquote>
+<p>creates directories where they don't exist</p>
+<table>
+<thead><tr>
+<th></th>
+<th>Type</th>
+<th>Default</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>path</code></strong></td>
+<td><code>str</code></td>
+<td></td>
+<td>directory or nested directory</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Parallelism-utils">Parallelism utils<a class="anchor-link" href="#Parallelism-utils"> </a></h2>
@@ -134,7 +231,7 @@ nb_path: "nbs/core.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_accel_config" class="doc_header"><code>get_accel_config</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L26" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_accel_config</code>(<strong><code>filename</code></strong>=<em><code>'~/.cache/huggingface/accelerate/default_config.yaml'</code></em>)</p>
+<h4 id="get_accel_config" class="doc_header"><code>get_accel_config</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L53" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_accel_config</code>(<strong><code>filename</code></strong>=<em><code>'~/.cache/huggingface/accelerate/default_config.yaml'</code></em>)</p>
 </blockquote>
 <p>get huggingface accelerate config info</p>
 
@@ -201,7 +298,7 @@ port = 12456
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="HostPrinter" class="doc_header"><code>class</code> <code>HostPrinter</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L46" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>HostPrinter</code>(<strong><code>accelerator</code></strong>, <strong><code>tag</code></strong>=<em><code>'\x1b[96m'</code></em>, <strong><code>untag</code></strong>=<em><code>'\x1b[0m'</code></em>)</p>
+<h2 id="HostPrinter" class="doc_header"><code>class</code> <code>HostPrinter</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L73" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>HostPrinter</code>(<strong><code>accelerator</code></strong>, <strong><code>tag</code></strong>=<em><code>'\x1b[96m'</code></em>, <strong><code>untag</code></strong>=<em><code>'\x1b[0m'</code></em>)</p>
 </blockquote>
 <p>lil accelerate utility for only printing on host node</p>
 <table>
@@ -302,7 +399,7 @@ port = 12456
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="save" class="doc_header"><code>save</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L55" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>save</code>(<strong><code>accelerator</code></strong>, <strong><code>args</code></strong>, <strong><code>model</code></strong>, <strong><code>opt</code></strong>=<em><code>None</code></em>, <strong><code>epoch</code></strong>=<em><code>None</code></em>, <strong><code>step</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="save" class="doc_header"><code>save</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L82" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>save</code>(<strong><code>accelerator</code></strong>, <strong><code>args</code></strong>, <strong><code>model</code></strong>, <strong><code>opt</code></strong>=<em><code>None</code></em>, <strong><code>epoch</code></strong>=<em><code>None</code></em>, <strong><code>step</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>for checkpointing &amp; model saves</p>
 
@@ -327,7 +424,7 @@ port = 12456
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="n_params" class="doc_header"><code>n_params</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L68" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>n_params</code>(<strong><code>module</code></strong>)</p>
+<h4 id="n_params" class="doc_header"><code>n_params</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L95" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>n_params</code>(<strong><code>module</code></strong>)</p>
 </blockquote>
 <p>Returns the number of trainable parameters in a module.</p>
 
@@ -352,7 +449,7 @@ port = 12456
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="freeze" class="doc_header"><code>freeze</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L73" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>freeze</code>(<strong><code>model</code></strong>)</p>
+<h4 id="freeze" class="doc_header"><code>freeze</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L100" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>freeze</code>(<strong><code>model</code></strong>)</p>
 </blockquote>
 <p>freezes model weights; turns off gradient info</p>
 
@@ -390,7 +487,7 @@ port = 12456
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Mish_func" class="doc_header"><code>class</code> <code>Mish_func</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L81" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Mish_func</code>(<strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>) :: <code>Function</code></p>
+<h2 id="Mish_func" class="doc_header"><code>class</code> <code>Mish_func</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L108" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Mish_func</code>(<strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>) :: <code>Function</code></p>
 </blockquote>
 <p>Base class to create custom <code>autograd.Function</code></p>
 <p>To create a custom <code>autograd.Function</code>, subclass this class and implement
@@ -439,7 +536,7 @@ correct methods on <code>ctx</code> and validating your backward function using
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Mish" class="doc_header"><code>class</code> <code>Mish</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L109" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Mish</code>(<strong>**<code>kwargs</code></strong>) :: <code>Module</code></p>
+<h2 id="Mish" class="doc_header"><code>class</code> <code>Mish</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L136" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Mish</code>(<strong>**<code>kwargs</code></strong>) :: <code>Module</code></p>
 </blockquote>
 <p>Base class for all neural network modules.</p>
 <p>Your models should also subclass this class.</p>
@@ -490,7 +587,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Swish_func" class="doc_header"><code>class</code> <code>Swish_func</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L118" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Swish_func</code>(<strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>) :: <code>Function</code></p>
+<h2 id="Swish_func" class="doc_header"><code>class</code> <code>Swish_func</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L145" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Swish_func</code>(<strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>) :: <code>Function</code></p>
 </blockquote>
 <p>Base class to create custom <code>autograd.Function</code></p>
 <p>To create a custom <code>autograd.Function</code>, subclass this class and implement
@@ -539,7 +636,7 @@ correct methods on <code>ctx</code> and validating your backward function using
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Swish" class="doc_header"><code>class</code> <code>Swish</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L132" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Swish</code>(<strong>**<code>kwargs</code></strong>) :: <code>Module</code></p>
+<h2 id="Swish" class="doc_header"><code>class</code> <code>Swish</code><a href="https://github.com/drscotthawley/shazbot/tree/master/shazbot/core.py#L159" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Swish</code>(<strong>**<code>kwargs</code></strong>) :: <code>Module</code></p>
 </blockquote>
 <p>Base class for all neural network modules.</p>
 <p>Your models should also subclass this class.</p>

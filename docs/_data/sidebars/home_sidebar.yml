@@ -25,6 +25,9 @@ entries:
       title: icebox
       url: icebox.html
     - output: web,pdf
+      title: spectro-fu
+      url: spectro_fu.html
+    - output: web,pdf
       title: train_aa_mixer
       url: train_aa_mixer.html
     - output: web,pdf
