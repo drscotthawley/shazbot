@@ -96,10 +96,7 @@ def print_stats(waveform, sample_rate=None, src=None, print=print):
 
 # Cell
 def spectrogram_image(spec, title=None, ylabel='freq_bin', aspect='auto', xmax=None, db_range=[-60,20], justimage=False):
-    """
-    # cf. https://pytorch.org/tutorials/beginner/audio_feature_extractions_tutorial.html
-
-    """
+    "Modified from PyTorch tutorial https://pytorch.org/tutorials/beginner/audio_feature_extractions_tutorial.html"
     fig = Figure(figsize=(5, 4), dpi=100) if not justimage else Figure(figsize=(4.145, 4.145), dpi=100, tight_layout=True)
     canvas = FigureCanvasAgg(fig)
     axs = fig.add_subplot()
@@ -125,9 +122,7 @@ def spectrogram_image(spec, title=None, ylabel='freq_bin', aspect='auto', xmax=N
 
 # Cell
 def audio_spectrogram_image(waveform, power=2.0, sample_rate=48000, print=print, db_range=[-60,20], justimage=False, log=False):
-    """
-    # cf. https://pytorch.org/tutorials/beginner/audio_feature_extractions_tutorial.html
-    """
+    "Modified from PyTorch tutorial https://pytorch.org/tutorials/beginner/audio_feature_extractions_tutorial.html"
     n_fft = 1024
     win_length = None
     hop_length = n_fft//2 # 512
