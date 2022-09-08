@@ -6,7 +6,7 @@ __all__ = ['DiffusionDVAE', 'setup_weights', 'ad_encode_it', 'EmbedBlock', 'Audi
            'transfer', 'prk_step', 'plms_step', 'prk_sample', 'plms_sample', 'pie_step', 'plms2_step', 'pie_sample',
            'plms2_sample', 'make_cond_model_fn', 'demo', 'get_stems_faders', 'main']
 
-# %% ../nbs/train_aa_mixer.ipynb 3
+# %% ../nbs/train_aa_mixer.ipynb 4
 from prefigure.prefigure import get_all_args, push_wandb_config
 from copy import deepcopy
 import math
@@ -45,7 +45,7 @@ from nwt_pytorch import Memcodes
 from dvae.residual_memcodes import ResidualMemcodes
 from decoders.diffusion_decoder import DiffusionDecoder
 
-# %% ../nbs/train_aa_mixer.ipynb 4
+# %% ../nbs/train_aa_mixer.ipynb 5
 #audio diffusion classes
 class DiffusionDVAE(nn.Module):
     def __init__(self, global_args, device):
@@ -179,7 +179,7 @@ def ad_encode_it(reals, device, dvaemodel, sample_size=32768, num_quantizers=8):
 
     return tokens
 
-# %% ../nbs/train_aa_mixer.ipynb 6
+# %% ../nbs/train_aa_mixer.ipynb 7
 class EmbedBlock(nn.Module):
     def __init__(self, dims:int, **kwargs) -> None:
         super().__init__()
@@ -275,7 +275,7 @@ class AudioAlgebra(nn.Module):
                 loss += 1/300*(sum(magdiffs2)/len(magdiffs2)).mean() # mean of l2 of diff in vector mag  extra .mean() for good measure  
         return loss
 
-# %% ../nbs/train_aa_mixer.ipynb 8
+# %% ../nbs/train_aa_mixer.ipynb 9
 # Define the noise schedule and sampling loop
 def get_alphas_sigmas(t):
     """Returns the scaling factors for the clean image (alpha) and for the
@@ -510,7 +510,7 @@ def demo(model, log_dict, zsum, zmix, demo_samples, step, demo_steps=250, sr=480
     return log_dict
     
 
-# %% ../nbs/train_aa_mixer.ipynb 10
+# %% ../nbs/train_aa_mixer.ipynb 11
 def get_stems_faders(batch, dl, maxstems=6):
     "grab some more audio stems and set faders"
     nstems = 1 + int(torch.randint(maxstems-1,(1,1))[0][0].numpy()) # an int between 1 and maxstems, PyTorch style :-/
@@ -521,7 +521,7 @@ def get_stems_faders(batch, dl, maxstems=6):
         stems.append(next(dl_iter)[0])  # [0] is because there are two items returned and audio is the first
     return stems, faders
 
-# %% ../nbs/train_aa_mixer.ipynb 12
+# %% ../nbs/train_aa_mixer.ipynb 13
 def main():
 
     args = get_all_args()
@@ -682,7 +682,7 @@ def main():
     except KeyboardInterrupt:
         pass
 
-# %% ../nbs/train_aa_mixer.ipynb 13
+# %% ../nbs/train_aa_mixer.ipynb 14
 # Not needed if listed in console_scripts in settings.ini
 if __name__ == '__main__' and "get_ipython" not in dir():  # don't execute in notebook
     main() 

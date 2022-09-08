@@ -4,7 +4,7 @@
 __all__ = ['JUKEBOX_SAMPLE_RATE', 'init_jukebox_sample_rate', 'stereo', 'audio_for_jbx', 'load_audio_for_jbx', 'IceBoxModel',
            'batch_it_crazy', 'main']
 
-# %% ../nbs/icebox.ipynb 2
+# %% ../nbs/icebox.ipynb 3
 import torch 
 from torch import nn 
 from torch import multiprocessing as mp
@@ -19,7 +19,7 @@ from aeiou.hpc import get_accel_config, HostPrinter
 from aeiou.viz import embeddings_table, pca_point_cloud, audio_spectrogram_image, tokens_spectrogram_image, plot_jukebox_embeddings
 import librosa
 
-# %% ../nbs/icebox.ipynb 4
+# %% ../nbs/icebox.ipynb 5
 #JUKEBOX_SAMPLE_RATE = 44100  # ethan's original
 JUKEBOX_SAMPLE_RATE = None
 
@@ -74,7 +74,7 @@ def load_audio_for_jbx(path, offset=0.0, dur=None, trunc_sec=None, device=None):
     #print("0, audio.shape = ",audio.shape)
     return audio_for_jbx(audio, trunc_sec, device=device)
 
-# %% ../nbs/icebox.ipynb 6
+# %% ../nbs/icebox.ipynb 7
 class IceBoxModel(nn.Module):
     def __init__(self, global_args, device, port=9500):
         super().__init__()
@@ -115,7 +115,7 @@ class IceBoxModel(nn.Module):
     def decode(self, *args, **kwargs):
         return self.decoder(*args, **kwargs)   
 
-# %% ../nbs/icebox.ipynb 7
+# %% ../nbs/icebox.ipynb 8
 def batch_it_crazy(x, win_len):
     "(pun intended) Chop up long sequence into a batch of win_len windows"
     x_len = x.size()[-1]
@@ -124,7 +124,7 @@ def batch_it_crazy(x, win_len):
     xpad = F.pad(x, (0, pad_amt))
     return rearrange(xpad, 'd (b n) -> b d n', n=win_len)
 
-# %% ../nbs/icebox.ipynb 9
+# %% ../nbs/icebox.ipynb 10
 def main():
     #from dotmap import DotMap  # only used for setting some args
     from prefigure.prefigure import get_all_args, push_wandb_config
