@@ -15,8 +15,8 @@ from jukebox.make_models import make_vqvae, make_prior, MODELS, make_model
 from jukebox.hparams import Hyperparams, setup_hparams
 import os
 import accelerate
-from .core import get_accel_config, HostPrinter
-from .viz import embeddings_table, pca_point_cloud, audio_spectrogram_image, tokens_spectrogram_image, plot_jukebox_embeddings
+from aeiou.hpc import get_accel_config, HostPrinter
+from aeiou.viz import embeddings_table, pca_point_cloud, audio_spectrogram_image, tokens_spectrogram_image, plot_jukebox_embeddings
 import librosa
 
 # %% ../nbs/icebox.ipynb 4

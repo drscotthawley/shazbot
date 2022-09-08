@@ -27,8 +27,9 @@ from einops import rearrange, repeat
 import wandb
 import subprocess
 
-from .viz import embeddings_table, pca_point_cloud, audio_spectrogram_image, tokens_spectrogram_image
-from .core import n_params, save, freeze, HostPrinter, Mish
+from aeiou.viz import embeddings_table, pca_point_cloud, audio_spectrogram_image, tokens_spectrogram_image
+from aeiou.hpc import load, save, HostPrinter
+from .core import n_params, freeze, Mish
 #import shazbot.blocks_utils as blocks_utils
 from .icebox import load_audio_for_jbx, IceBoxModel
 from .data import MultiStemDataset
